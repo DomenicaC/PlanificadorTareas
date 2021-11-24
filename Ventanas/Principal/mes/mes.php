@@ -20,7 +20,7 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
 <body>
   <header>
     <div class="nav-Primario">
-      <a href="../../Login/html/login.html">Cerrar Sesión</a>
+      <a href="../../../config/cerrarSesion.php">Cerrar Sesión</a>
     </div>
 
     <div class="nav-Secundario">

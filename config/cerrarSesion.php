@@ -2,5 +2,5 @@
     session_start();
     $_SESSION['isLogged'] = FALSE;
     session_destroy();
-    header("Location: /Planificador/Login/html/login.html");
+    header("Location: /Planificador/Ventanas/Login/html/login.html");
 ?>
