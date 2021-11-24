@@ -11,7 +11,7 @@
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         $_SESSION['isLogged'] = TRUE;
-        header("Location: ../../Principal/php/prin.html");
+        header("Location: ../../Principal/php/principal.php");
         echo "<p>ingreso!! :)</p>";
 
     } else {
