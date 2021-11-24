@@ -1,45 +1,45 @@
-body{
-    background: url(../images/fondos/livingnet.jpg) center;
-    background-size: 100% auto;
-    background-repeat: no-repeat;
+body {
+  background: url(../images/fondos/livingnet.jpg) center;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
 }
-#login-box{
-    border: 1px solid;
-    width: 30%;
-    text-align: center;
-    margin: 0 auto;
-    margin-top: 15%;
-    background: #c4e1f180;
-    padding: 20px 50px; 
-}
-
-#login-box h1{
-    color: white;
+#login-box {
+  border: 1px solid;
+  width: 30%;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 15%;
+  background: #c4e1f180;
+  padding: 20px 50px;
 }
 
-#login-box .form .item input, input::placeholder {
-    width: 200px;
-    border: 0;
-    border-bottom: 5px solid white;
-    font-size: 18px;
-    background: #ffffff00;
-    color: white;
-    padding: 5px 10px;
-    
+#login-box h1 {
+  color: white;
 }
 
-#login-box .form .item i{
-    color: rgb(46, 41, 41);
-    font-size: 18px;
+#login-box .form .item input,
+input::placeholder {
+  width: 200px;
+  border: 0;
+  border-bottom: 5px solid white;
+  font-size: 18px;
+  background: #ffffff00;
+  color: white;
+  padding: 5px 10px;
 }
 
-#login-box button{
-    border: 0;
-    width: 150px;
-    height: 30px;
-    margin-top: 18px;
-    font-size: 18px;
-    color: white;
-    border-radius: 25px;
-    background-image: linear-gradient(to right,#00dbde 0%, #0a35f3 100%);
+#login-box .form .item i {
+  color: rgb(46, 41, 41);
+  font-size: 18px;
+}
+
+#login-box button {
+  border: 0;
+  width: 150px;
+  height: 30px;
+  margin-top: 18px;
+  font-size: 18px;
+  color: white;
+  border-radius: 25px;
+  background-image: linear-gradient(to right, #00dbde 0%, #0a35f3 100%);
 }

@@ -9,4 +9,3 @@
         echo 'no entre';
     }
     //echo 'usuario '. $usuario . ' contraseña '. $contrasenia;
-?>
