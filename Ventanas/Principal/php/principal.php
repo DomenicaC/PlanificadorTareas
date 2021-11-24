@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
-    header("Location: /SistemaDeGestion/public/vista/login.html");
+    header("Location: /Planificador/Ventanas/Login/html/login.html");
 }
 ?>
 
@@ -10,8 +10,8 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
 
 <head>
     <meta charset="UTF-8">
-    <title>Gestión de usuarios</title>
-    
+    <title>Pagina Principal</title>
+
     <link href="../../../css/princi.css" rel="stylesheet" />
 
 
@@ -21,16 +21,16 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
     <header>
         <div class="nav-Primario">
             <a href="../../Login/html/login.html">Cerrar Sesión</a>
-            
+
         </div>
 
         <div class="nav-Secundario">
-            <div class="dia"> <a href="">Dia</a> </div>
+            <div class="principal"> <a href="../php/principal.php">Menú Principal</a> </div>
+            <div class="dia"> <a href="">Día</a> </div>
             <div class="semana"> <a href="">Semana</a> </div>
-            <div class="mes"> <a href="">Mes</a> </div>
+            <div class="mes"> <a href="../mes/mes.php">Mes</a> </div>
         </div>
     </header>
-
 
 </body>
 
