@@ -74,7 +74,9 @@ function escribirdias() {
             midia = diames.getDate()
             mimes = diames.getMonth()
             mianno = diames.getFullYear()
-            celda = fila.getElementsByTagName("td")[j];
+            celda = fila.getElementsByTagName("a")[j];
+            //fila.getElementsByTagName("a")[j].setAtribute("href", j);
+            celda.href = "http://localhost/Planificador/Ventanas/Principal/mes/mes.php&mes=" + [mimes] + "&dia=" + [midia] + "&anio=" + [mianno];
             celda.innerHTML = midia;
             //console.log(diames);
             //celda.addEventListener('click',function(){seleccion(diaseleccion[i+j-1])},true);

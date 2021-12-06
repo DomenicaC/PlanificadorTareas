@@ -14,6 +14,7 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../../../css/mes.css">
   <script src="../js/calendario.js" type="text/javascript"></script>
+  <script src="../js/reloj.js" type="text/javascript"></script>
   <title>Agenda Mes</title>
 </head>
 
@@ -49,58 +50,58 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
           <th></th>
         </tr>
         <tr id="fila1">
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
+          <td><a></a></td>
+          <td><a></a></td>
+          <td><a></a></td>
+          <td><a></a></td>
+          <td><a></a></td>
+          <td><a></a></td>
+          <td><a></a></td>
         </tr>
         <tr id="fila2">
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
+          <td><a></a></td>
+          <td><a></a></td>
+          <td><a></a></td>
+          <td><a></a></td>
+          <td><a></a></td>
+          <td><a></a></td>
+          <td><a></a></td>
         </tr>
         <tr id="fila3">
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
+          <td><a></a></td>
+          <td><a></a></td>
+          <td><a></a></td>
+          <td><a></a></td>
+          <td><a></a></td>
+          <td><a></a></td>
+          <td><a></a></td>
         </tr>
         <tr id="fila4">
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
+          <td><a></a></td>
+          <td><a></a></td>
+          <td><a></a></td>
+          <td><a></a></td>
+          <td><a></a></td>
+          <td><a></a></td>
+          <td><a></a></td>
         </tr>
         <tr id="fila5">
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
+          <td><a></a></td>
+          <td><a></a></td>
+          <td><a></a></td>
+          <td><a></a></td>
+          <td><a></a></td>
+          <td><a></a></td>
+          <td><a></a></td>
         </tr>
         <tr id="fila6">
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
+          <td><a></a></td>
+          <td><a></a></td>
+          <td><a></a></td>
+          <td><a></a></td>
+          <td><a></a></td>
+          <td><a></a></td>
+          <td><a></a></td>
         </tr>
       </table>
       <div id="fechaactual"><i onclick="actualizar()">HOY: </i></div>
@@ -134,9 +135,55 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
   <section class="tareas">
     <h1>parte de la descipcion de las tareas</h1>
     <div>
-      <a href=""><img src="../../../images/iconos/mas.png" style="width: 2rem;" /> <span>Añadir tarea</span></a>
+      <a href="#miModal"><img src="../../../images/iconos/mas.png" style="width: 2rem;" /> <span>Añadir tarea</span></a>
     </div>
   </section>
+
+  <!-- Clase modal donde se escoje la hora y fecha y demas informacion de las tareas -->
+  <div id="miModal" class="modal">
+    <div class="modal-contenido">
+      <a href="#">X Cerrar</a>
+
+      <div class="seleccionHoras">
+        <div class="horaInicial">
+          <h2>Seleccione la hora Inicial</h2>
+          <section id="contReloj">
+            <p id="pHoras"></p>
+            <p>:</p>
+            <p id="pMinutos"></p>
+          </section>
+          <section id="contSaludo"></section>
+          <input type="time" min="07:00" max="20:00" id="horaInicial" onchange="ActualizarHora(this.value)">
+        </div>
+
+        <div class="horaFinal">
+          <h2>Seleccione la hora Final</h2>
+          <input type="time" min="07:00" max="20:00">
+        </div>
+      </div>
+
+      <div class="seleccionInformacion">
+        <div class="informacion">
+          <label for="">Nombre Tarea:</label>
+          <input type="text"> <br>
+          <label for="">Descripción Tarea:</label>
+          <input type="text">
+        </div>
+
+        <div class="colaboradores">
+          <label for="">Añadir Colaboradores</label>
+          <select name="colaboradores" id="sis-colaboradores">
+            <option value="ninguno">Seleccione un colaborador</option>
+            <option value="serivicioCliente">Servicio al Cliente</option>
+            <option value="jefeTecnico">Jefe Tecnico</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- fin de la clase modal -->
 </body>
 
 </html>
