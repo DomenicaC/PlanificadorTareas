@@ -1,12 +1,12 @@
 .caledario {
-  width: 49%;
+  width: 50%;
   height: auto;
   float: left;
   clear: both;
 }
 
 .tareas {
-  width: 49%;
+  width: 41%;
   height: auto;
   float: left;
 }
