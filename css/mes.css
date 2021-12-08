@@ -173,8 +173,8 @@ h1 {
 .modal-contenido {
   background-color: aqua;
   width: 60%;
-  padding: 10px 20px;
-  margin: 20% auto;
+  padding: 10px 100px;
+  margin: 10% auto;
   position: relative;
 }
 

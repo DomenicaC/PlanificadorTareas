@@ -13,23 +13,34 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../../../css/mes.css">
+  <link rel="stylesheet" href="../../../css/general.css">
   <script src="../js/calendario.js" type="text/javascript"></script>
   <script src="../js/reloj.js" type="text/javascript"></script>
   <title>Agenda Mes</title>
 </head>
 
 <body>
-  <header>
-    <div class="nav-Primario">
-      <a href="../../../config/cerrarSesion.php">Cerrar Sesión</a>
-    </div>
+  <header class="enc1">
+    <img src="../../../images/iconos/calendar.png" alt="iconoLogo" />
+    <br />
+    <a class="cerrar" href="../../../config/cerrarSesion.php">Cerrar Sesión</a>
+    <h1>Planificador Empresarial</h1>
 
-    <div class="nav-Secundario">
-      <div class="principal"> <a href="../php/principal.php">Menú Principal</a> </div>
-      <div class="dia"> <a href="">Dia</a> </div>
-      <div class="semana"> <a href="">Semana</a> </div>
-      <div class="mes"> <a href="">Mes</a> </div>
-    </div>
+
+    <br /> <br />
+  </header>
+
+  <header class="tabla">
+    <br /> <br />
+    <nav>
+      <ul>
+        <li><a href="../php/principal.php"> Página Principal </a></li>
+        <li><a href="../dia/dia.php"> Día </a> </li>
+        <li><a href="../semana/semana.php"> Semana </a></li>
+        <li><a href="mes.php"> Mes </a></li>
+      </ul>
+    </nav>
+    <br /> <br />
   </header>
 
   <section class="caledario">
@@ -184,6 +195,17 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
   </div>
 
   <!-- fin de la clase modal -->
+
+  <footer class=" pie">
+    <br />PLANIFICADORA EMPRESARIAL &#8226;Byron Alejandro Godoy Tenesaca &nbsp; 28201 &#8226;
+    <a href="telf: +9534058822"> (953) 405-8822</a> <br />
+    <a href="mailto: @est.ups.edu.ec">@est.ups.edu.ec</a>
+
+    <br />PLANIFICADORA EMPRESARIAL &#8226; Domenica Fernanda Vintimilla Canizares &nbsp; 28201 &#8226;
+    <a href="telf: +953968741628"> (953) 9687416282</a> <br />
+    <a href="mailto: canizaresdomenica4@gmail.com">canizaresdomenica4@gmail.com</a>
+    <br />© Todos los derechos reservados
+  </footer>
 </body>
 
 </html>
