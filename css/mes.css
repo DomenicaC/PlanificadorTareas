@@ -173,6 +173,7 @@ h1 {
 .modal-contenido {
   background-color: aqua;
   width: 60%;
+  height: 70%;
   padding: 10px 100px;
   margin: 10% auto;
   position: relative;
@@ -193,4 +194,52 @@ h1 {
 #miModal:target {
   opacity: 1;
   pointer-events: auto;
+}
+
+/* diseño del interior del modal*/
+
+.horaInicial h2,
+.horaFinal h2 {
+  text-align: center;
+}
+
+.horaInicial,
+.horaFinal {
+  width: 45%;
+  margin: 0;
+  margin-bottom: 3%;
+  float: left;
+}
+
+.horaFinal,
+.colaboradores {
+  margin-left: 5% !important;
+}
+
+.horaInicial #contReloj,
+.horaFinal #contReloj {
+  margin: 0;
+  width: 100%;
+}
+
+.seleccionInformacion h2 {
+  text-align: center;
+  margin-bottom: 2%;
+}
+
+.seleccionInformacion {
+  clear: both;
+  padding-top: 1%;
+  border-top: 2px solid black;
+}
+
+.informacion textarea {
+  width: 95%;
+}
+
+.informacion,
+.colaboradores {
+  width: 45%;
+  margin: 0;
+  float: left;
 }

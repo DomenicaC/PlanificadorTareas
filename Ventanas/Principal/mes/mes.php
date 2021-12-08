@@ -163,22 +163,29 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
             <p>:</p>
             <p id="pMinutos"></p>
           </section>
-          <section id="contSaludo"></section>
+          <!-- <section id="contSaludo"></section> -->
           <input type="time" min="07:00" max="20:00" id="horaInicial" onchange="ActualizarHora(this.value)">
         </div>
 
         <div class="horaFinal">
           <h2>Seleccione la hora Final</h2>
-          <input type="time" min="07:00" max="20:00">
+          <section id="contReloj">
+            <p id="pHorasF"></p>
+            <p>:</p>
+            <p id="pMinutosF"></p>
+          </section>
+          <!-- <section id="contSaludoF"></section> -->
+          <input type="time" min="07:00" max="20:00" id="horaInicial" onchange="ActualizarHoraFinal(this.value)">
         </div>
       </div>
 
       <div class="seleccionInformacion">
+        <h2>Seleccion de Inforacion</h2>
         <div class="informacion">
           <label for="">Nombre Tarea:</label>
           <input type="text"> <br>
-          <label for="">Descripción Tarea:</label>
-          <input type="text">
+          <label for="">Descripción Tarea:</label><Br />
+          <textarea name="descipcion" rows="10" cols="10" placeholder="Ingrese la descripcion de la tarea"></textarea>
         </div>
 
         <div class="colaboradores">
