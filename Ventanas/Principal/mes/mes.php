@@ -148,6 +148,36 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
     <div>
       <a href="#miModal"><img src="../../../images/iconos/mas.png" style="width: 2rem;" /> <span>Añadir tarea</span></a>
     </div>
+    <table style="width:100%">
+      <tr>
+        <th>Codigo</th>
+        <th>Nombre</th>
+        <th>Hora</th>
+      </tr>
+      <?php
+      include '../../../config/conexionBD.php';
+      $sql = "SELECT * FROM tarea WHERE tar_fecha = '21.11.21'";
+      $result = $conn->query($sql);
+
+      if ($result->num_rows > 0) {
+
+        while ($row = $result->fetch_assoc()) {
+          echo "<tr>";
+          echo " <td>" . $row["tar_codigo"] . "</td>";
+          echo " <td>" . $row['tar_nombre'] . "</td>";
+          echo " <td>" . $row['tar_horaInicio'] . "</td>";
+          echo " <td> <a href='eliminar.php?codigo=" . $row['tar_codigo'] . "'>Eliminar</a> </td>";
+          echo " <td> <a href='modificar.php?codigo=" . $row['tar_codigo'] . "'>Modificar</a> </td>";
+          echo "</tr>";
+        }
+      } else {
+        echo "<tr>";
+        echo " <td colspan='7'> No existen tareas asignadas para hoy</td>";
+        echo "</tr>";
+      }
+      $conn->close();
+      ?>
+    </table>
   </section>
 
   <!-- Clase modal donde se escoje la hora y fecha y demas informacion de las tareas -->
