@@ -54,9 +54,40 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
         </div>
     </section>
 
-    <section>
+    <section class="uno">
         <h2>Seccion de dos columnas</h2>
         <img src="../../../images/diagrama/driagraPastel.jpeg" " />
+    </section>
+
+    <section class="dos">
+        <h2>Tareas del día</h2>
+        <ul type=”A”>
+            <li>07:00 <a href=" ../tareas/tareas.php"></a></li>
+            <li>07:30 <a></a></li>
+            <li>08:00 <a href="../tareas/tareas.php">Reunion con jefe de RH</a></li>
+            <li>08:30 <a href="../tareas/tareas.php">Reunion con jefe de RH</a></li>
+            <li>09:00 <a href="../tareas/tareas.php"></a></li>
+            <li>09:30 <a></a></li>
+            <li>10:00 <a href="../tareas/tareas.php">Firma de cheques</a></li>
+            <li>10:30 <a href="../tareas/tareas.php">Firma de cheques</a></li>
+            <li>11:00 <a href="../tareas/tareas.php"></a></li>
+            <li>11:30 <a></a></li>
+            <li>12:00 <a href="../tareas/tareas.php"></a></li>
+            <li>12:30 <a></a></li>
+            <li>13:00 <a href="../tareas/tareas.php">Almuerzo</a></li>
+            <li>13:30 <a href="../tareas/tareas.php">Almuerzo</a></li>
+            <li>14:00 <a href="../tareas/tareas.php">Almuerzo</a></li>
+            <li>14:30 <a href="../tareas/tareas.php">Almuerzo</a></li>
+            <li>15:00 <a href="../tareas/tareas.php"></a></li>
+            <li>15:30 <a></a></li>
+            <li>16:00 <a href="../tareas/tareas.php"></a></li>
+            <li>16:30 <a></a></li>
+            <li>17:00 <a href="../tareas/tareas.php"></a></li>
+            <li>17:30 <a></a></li>
+            <li>18:00 <a href="../tareas/tareas.php"></a></li>
+            <li>18:30 <a></a></li>
+            <li>19:00 <a href="../tareas/tareas.php"></a></li>
+        </ul>
     </section>
 
     <footer class=" pie">
@@ -68,7 +99,7 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
         <a href="telf: +953968741628"> (953) 9687416282</a> <br />
         <a href="mailto: canizaresdomenica4@gmail.com">canizaresdomenica4@gmail.com</a>
         <br />© Todos los derechos reservados
-        </footer>
+    </footer>
 
 </body>
 

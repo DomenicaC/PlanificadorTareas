@@ -243,3 +243,25 @@ h1 {
   margin: 0;
   float: left;
 }
+
+/*control de colores de a links*/
+.tareas ul li a:visited {
+  color: rgb(9, 13, 247);
+}
+
+.tareas ul li a:hover {
+  color: rgb(219, 80, 208);
+}
+
+.tareas ul li a:active {
+  color: rgb(195, 0, 255);
+}
+
+/*
+a:hover {
+  color: rgb(219, 80, 208);
+}
+
+a:active {
+  color: rgb(195, 0, 255);
+}*/

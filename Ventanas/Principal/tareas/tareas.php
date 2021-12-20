@@ -46,22 +46,22 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
         <form class="formu" id="formulario01" method="POST" action="" onsubmit="return validarCamposObligatorios()">
             <br>
             <label for="nombre">Nombre Tarea</label>
-            <input type="text" id="cedula" name="cedula" value="" placeholder="Ingrese su número de cédula" onkeyup="return valCedula(this)" />
+            <input type="text" id="cedula" name="cedula" value="" placeholder="" onkeyup="return valCedula(this)" />
             <span id="mensajeced" class="error"></span>
             <br><br>
 
             <label for="desc">Descripcion Tarea</label>
-            <input type="text" id="cedula" name="cedula" value="" placeholder="Ingrese sus dos nombres" onkeyup="return validarNombres(this)" />
+            <input type="text" id="cedula" name="cedula" value="" placeholder="" onkeyup="return validarNombres(this)" />
             <span id="mensajeNombres" class="error"></span>
             <br><br>
 
             <label for="Horarios">Horario Inicio Seleccionados</label>
-            <input type="text" id="apellidos" name="apellidos" value="" placeholder="Ingrese sus dos apellidos" onkeyup="return validarApellidos(this)" />
+            <input type="text" id="apellidos" name="apellidos" value="" placeholder="" onkeyup="return validarApellidos(this)" />
             <span id="mensajeApellidos" class="error"></span>
             <br><br>
 
             <label for="Horarios">Horario Final Seleccionados</label>
-            <input type="text" id="apellidos" name="apellidos" value="" placeholder="Ingrese sus dos apellidos" onkeyup="return validarApellidos(this)" />
+            <input type="text" id="apellidos" name="apellidos" value="" placeholder="" onkeyup="return validarApellidos(this)" />
             <span id="mensajeApellidos" class="error"></span>
             <br><br>
 

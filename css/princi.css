@@ -1,9 +1,8 @@
-
 .colabs {
   background-color: wheat;
   border-top: 0;
   width: 100%;
-  height: 3rem;  
+  height: 3rem;
 }
 
 .colabs div {
@@ -21,3 +20,14 @@
   margin-left: 4rem;
 }
 
+.uno {
+  float: left;
+}
+
+.dos {
+  float: left;
+}
+
+.dos ul li a:visited {
+  color: rgb(9, 13, 247);
+}
