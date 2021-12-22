@@ -14,7 +14,7 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
 
     <link href="../../../css/princi.css" rel="stylesheet" />
     <link href="../../../css/general.css" rel="stylesheet" />
-
+    <script src="../js/calendario.js" type="text/javascript"></script>
 
 </head>
 
@@ -34,10 +34,10 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
         <br /> <br />
         <nav>
             <ul>
-                <li><a href="principal.php"> Página Principal </a></li>
+                <li><a href="" id=prin onclick="fechaActualPrin()"> Página Principal </a></li>
                 <li><a href="../dia/dia.php"> Día </a> </li>
                 <li><a href="../semana/semana.php"> Semana </a></li>
-                <li><a href="../mes/mes.php"> Mes </a></li>
+                <li><a href="" id=mes onclick="fechaActualMes()"> Mes </a></li>
             </ul>
         </nav>
         <br /> <br />

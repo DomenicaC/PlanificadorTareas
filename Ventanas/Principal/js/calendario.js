@@ -76,7 +76,8 @@ function escribirdias() {
             mianno = diames.getFullYear()
             celda = fila.getElementsByTagName("a")[j];
             //fila.getElementsByTagName("a")[j].setAtribute("href", j);
-            celda.href = "http://localhost/Planificador/Ventanas/Principal/mes/mes1.php";
+            fecha = "" + midia + "." + (mimes + 1) + "." + mianno;
+            celda.href = "http://localhost/Planificador/Ventanas/Principal/mes/mes.php?fecha=" + fecha;
             celda.innerHTML = midia;
             //console.log(diames);
             //celda.addEventListener('click',function(){seleccion(diaseleccion[i+j-1])},true);
@@ -157,4 +158,24 @@ function mifecha() {
 
 function seleccion(fecha) {
     console.log(fecha)
+}
+
+function fechaActualMes() {
+    mes = document.getElementById("mes");
+    diaMes = new Date();
+    midia = diaMes.getDate();
+    mimes = diaMes.getMonth();
+    mianno = diaMes.getFullYear();
+    fecha = "" + midia + "." + (mimes+1) + "." + mianno;
+    mes.href = "/Planificador/Ventanas/Principal/mes/mes.php?fecha=" + fecha;
+}
+
+function fechaActualPrin() {
+    prin = document.getElementById("prin");
+    diaMes = new Date();
+    midia = diaMes.getDate();
+    mimes = diaMes.getMonth();
+    mianno = diaMes.getFullYear();
+    fecha = "" + midia + "." + (mimes+1) + "." + mianno;
+    prin.href = "/Planificador/Ventanas/Principal/principal/principal.php?fecha=" + fecha;
 }

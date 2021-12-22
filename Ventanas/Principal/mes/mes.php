@@ -34,10 +34,10 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
     <br /> <br />
     <nav>
       <ul>
-        <li><a href="../php/principal.php"> Página Principal </a></li>
+        <li><a href="" id=prin onclick="fechaActualPrin()"> Página Principal </a></li>
         <li><a href="../dia/dia.php"> Día </a> </li>
         <li><a href="../semana/semana.php"> Semana </a></li>
-        <li><a href="mes.php"> Mes </a></li>
+        <li><a href="" id=mes onclick="fechaActualMes()"> Mes </a></li>
       </ul>
     </nav>
     <br /> <br />
@@ -148,7 +148,7 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
     <div>
       <a href="#miModal"><img src="../../../images/iconos/mas.png" style="width: 2rem;" /> <span>Añadir tarea</span></a>
     </div>
-    <table style="width:100%">
+    <table class="tablas" style="width:100%" >
       <tr>
         <th>Codigo</th>
         <th>Nombre</th>
@@ -157,7 +157,8 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
       </tr>
       <?php
       include '../../../config/conexionBD.php';
-      $sql = "SELECT * FROM tarea WHERE tar_fecha = '21.11.21'";
+      $fecha = $_GET["fecha"]; 
+      $sql = "SELECT * FROM tarea WHERE tar_fecha = '$fecha'";
       $result = $conn->query($sql);
 
       if ($result->num_rows > 0) {

@@ -7,6 +7,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="../../../css/general.css">
     <link rel="stylesheet" type="text/css" href="../../../css/semana.css">
+    <script src="../js/calendario.js" type="text/javascript"></script>
     <title> Agenda Semanal</title>
 
 </head>
@@ -27,10 +28,10 @@
         <br /> <br />
         <nav>
             <ul>
-                <li><a href="../php/principal.php"> Página Principal </a></li>
+                <li><a href="" id=prin onclick="fechaActualPrin()"> Página Principal </a></li>
                 <li><a href="../dia/dia.php"> Día </a> </li>
                 <li><a href="semana.php"> Semana </a></li>
-                <li><a href="../mes/mes.php"> Mes </a></li>
+                <li><a href="" id=mes onclick="fechaActualMes()"> Mes </a></li>
             </ul>
         </nav>
         <br /> <br />

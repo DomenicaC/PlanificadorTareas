@@ -19,16 +19,19 @@ h1 {
 }
 
 /*control de colores de a links*/
-a:visited {
+/*a:visited {
     color: rgb(253, 253, 253);
+}*/
+a:link {
+    color: #01c7c3;
 }
 
 a:hover {
-    color: rgb(219, 80, 208);
+    color: #c40db9;
 }
 
 a:active {
-    color: rgb(195, 0, 255);
+    color: #01c7c3;
 }
 
 /*encabezado*/
@@ -36,7 +39,7 @@ a:active {
     float: center;
     text-align: center;
     width: auto;
-    background-color: blue;
+    background-color: #1937a3;
 }
 
 .enc1 h1 {
@@ -98,7 +101,7 @@ footer {
     border-top: 2px solid rgb(26, 36, 128);
     clear: both;
     padding-bottom: 20px;
-    background-color: rgb(26, 36, 128);
+    background-color: #1937a3;
     color: white;
     text-align: center;
 }
@@ -139,3 +142,22 @@ body {
         rgba(58, 31, 61, 0.9) -20px 0px 25px;
 }
 
+
+#tablas {
+    width: 100%;
+    min-height: 100vh;
+    background: #c850c0;
+    background: -webkit-linear-gradient(45deg, #4158d0, #c850c0);
+    background: -o-linear-gradient(45deg, #4158d0, #c850c0);
+    background: -moz-linear-gradient(45deg, #4158d0, #c850c0);
+    background: linear-gradient(45deg, #4158d0, #c850c0);
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 33px 30px;
+}
