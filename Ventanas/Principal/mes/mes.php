@@ -153,6 +153,7 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
         <th>Codigo</th>
         <th>Nombre</th>
         <th>Hora</th>
+        <th>Estado</th>
       </tr>
       <?php
       include '../../../config/conexionBD.php';
@@ -166,8 +167,9 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
           echo " <td>" . $row["tar_codigo"] . "</td>";
           echo " <td>" . $row['tar_nombre'] . "</td>";
           echo " <td>" . $row['tar_horaInicio'] . "</td>";
-          echo " <td> <a href='eliminar.php?codigo=" . $row['tar_codigo'] . "'>Eliminar</a> </td>";
-          echo " <td> <a href='modificar.php?codigo=" . $row['tar_codigo'] . "'>Modificar</a> </td>";
+          echo " <td>" . $row['tar_horaInicio'] . "</td>";
+          echo " <td> <a href='php/eliminar.php?codigo=" . $row['tar_codigo'] . "'>Eliminar</a> </td>";
+          echo " <td> <a href='../php/modificar.php?codigo=" . $row['tar_codigo'] . "'>Modificar</a> </td>";
           echo "</tr>";
         }
       } else {

@@ -59,35 +59,38 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
         <img src="../../../images/diagrama/driagraPastel.jpeg" " />
     </section>
 
-    <section class="dos">
+    <section class=" dos">
         <h2>Tareas del día</h2>
-        <ul type=”A”>
-            <li>07:00 <a href=" ../tareas/tareas.php"></a></li>
-            <li>07:30 <a></a></li>
-            <li>08:00 <a href="../tareas/tareas.php">Reunion con jefe de RH</a></li>
-            <li>08:30 <a href="../tareas/tareas.php">Reunion con jefe de RH</a></li>
-            <li>09:00 <a href="../tareas/tareas.php"></a></li>
-            <li>09:30 <a></a></li>
-            <li>10:00 <a href="../tareas/tareas.php">Firma de cheques</a></li>
-            <li>10:30 <a href="../tareas/tareas.php">Firma de cheques</a></li>
-            <li>11:00 <a href="../tareas/tareas.php"></a></li>
-            <li>11:30 <a></a></li>
-            <li>12:00 <a href="../tareas/tareas.php"></a></li>
-            <li>12:30 <a></a></li>
-            <li>13:00 <a href="../tareas/tareas.php">Almuerzo</a></li>
-            <li>13:30 <a href="../tareas/tareas.php">Almuerzo</a></li>
-            <li>14:00 <a href="../tareas/tareas.php">Almuerzo</a></li>
-            <li>14:30 <a href="../tareas/tareas.php">Almuerzo</a></li>
-            <li>15:00 <a href="../tareas/tareas.php"></a></li>
-            <li>15:30 <a></a></li>
-            <li>16:00 <a href="../tareas/tareas.php"></a></li>
-            <li>16:30 <a></a></li>
-            <li>17:00 <a href="../tareas/tareas.php"></a></li>
-            <li>17:30 <a></a></li>
-            <li>18:00 <a href="../tareas/tareas.php"></a></li>
-            <li>18:30 <a></a></li>
-            <li>19:00 <a href="../tareas/tareas.php"></a></li>
-        </ul>
+        <table style="width:100%">
+            <tr>
+                <th>Codigo</th>
+                <th>Nombre</th>
+                <th>Hora</th>
+            </tr>
+            <?php
+            include '../../../config/conexionBD.php';
+            $sql = "SELECT * FROM tarea WHERE tar_fecha = '21.11.21'";
+            $result = $conn->query($sql);
+
+            if ($result->num_rows > 0) {
+
+                while ($row = $result->fetch_assoc()) {
+                    echo "<tr>";
+                    echo " <td>" . $row["tar_codigo"] . "</td>";
+                    echo " <td>" . $row['tar_nombre'] . "</td>";
+                    echo " <td>" . $row['tar_horaInicio'] . "</td>";
+                    echo " <td> <a href='eliminar.php?codigo=" . $row['tar_codigo'] . "'>Eliminar</a> </td>";
+                    echo " <td> <a href='modificar.php?codigo=" . $row['tar_codigo'] . "'>Modificar</a> </td>";
+                    echo "</tr>";
+                }
+            } else {
+                echo "<tr>";
+                echo " <td colspan='7'> No existen tareas asignadas para hoy</td>";
+                echo "</tr>";
+            }
+            $conn->close();
+            ?>
+        </table>
     </section>
 
     <footer class=" pie">
