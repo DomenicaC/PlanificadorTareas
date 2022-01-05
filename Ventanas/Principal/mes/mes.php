@@ -148,7 +148,7 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
     <div>
       <a href="#miModal"><img src="../../../images/iconos/mas.png" style="width: 2rem;" /> <span>Añadir tarea</span></a>
     </div>
-    <table class="tablas" style="width:100%" >
+    <table class="tablas" style="width:100%">
       <tr>
         <th>Codigo</th>
         <th>Nombre</th>
@@ -157,7 +157,7 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
       </tr>
       <?php
       include '../../../config/conexionBD.php';
-      $fecha = $_GET["fecha"]; 
+      $fecha = $_GET["fecha"];
       $sql = "SELECT * FROM tarea WHERE tar_fecha = '$fecha'";
       $result = $conn->query($sql);
 
@@ -188,48 +188,59 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
     <div class="modal-contenido">
       <a href="#">X Cerrar</a>
 
-      <div class="seleccionHoras">
-        <div class="horaInicial">
-          <h2>Seleccione la hora Inicial</h2>
-          <section id="contReloj">
-            <p id="pHoras"></p>
-            <p>:</p>
-            <p id="pMinutos"></p>
-          </section>
-          <!-- <section id="contSaludo"></section> -->
-          <input type="time" min="07:00" max="20:00" id="horaInicial" onchange="ActualizarHora(this.value)">
+      <h1>Ingreso de nueva tarea</h1>
+      <form id="formulario01" method="POST" action="php/crear_tarea.php">
+        <div class="seleccionHoras">
+          <div class="horaInicial">
+            <h2>Seleccione la hora Inicial</h2>
+            <section id="contReloj">
+              <p id="pHoras"></p>
+              <p>:</p>
+              <p id="pMinutos"></p>
+            </section>
+            <!-- <section id="contSaludo"></section> -->
+            <input type="time" id="horaInicio" name="horaInicio" min="07:00" max="20:00" onchange="ActualizarHora(this.value)">
+          </div>
+
+          <div class="horaFinal">
+            <h2>Seleccione la hora Final</h2>
+            <section id="contReloj">
+              <p id="pHorasF"></p>
+              <p>:</p>
+              <p id="pMinutosF"></p>
+            </section>
+            <!-- <section id="contSaludoF"></section> -->
+            <input type="time" id="horaFinal" name="horaFinal" min="07:00" max="20:00" onchange="ActualizarHoraFinal(this.value)">
+          </div>
         </div>
 
-        <div class="horaFinal">
-          <h2>Seleccione la hora Final</h2>
-          <section id="contReloj">
-            <p id="pHorasF"></p>
-            <p>:</p>
-            <p id="pMinutosF"></p>
-          </section>
-          <!-- <section id="contSaludoF"></section> -->
-          <input type="time" min="07:00" max="20:00" id="horaInicial" onchange="ActualizarHoraFinal(this.value)">
-        </div>
-      </div>
+        <div class="seleccionInformacion">
+          <h2>Seleccion de Información</h2>
+          <div class="informacion">
+            <label for="">Título Tarea:</label>
+            <input type="text" id="nombre" name="nombre" value="" placeholder="Ingrese el título de la tarea..." required> <br>
 
-      <div class="seleccionInformacion">
-        <h2>Seleccion de Inforacion</h2>
-        <div class="informacion">
-          <label for="">Nombre Tarea:</label>
-          <input type="text"> <br>
-          <label for="">Descripción Tarea:</label><Br />
-          <textarea name="descipcion" rows="10" cols="10" placeholder="Ingrese la descripcion de la tarea"></textarea>
+            <label for="">Descripción Tarea:</label><Br />
+            <textarea id="descripcion" name="descripcion" rows="10" cols="10" placeholder="Ingrese la descripcion de la tarea"></textarea>
+
+            <label for="">Fecha Tarea:</label>
+            <input type="date" id="fecha" name="fecha"> <br>
+          </div>
+
+          <div class="colaboradores">
+            <label for="">Añadir Colaboradores</label>
+            <select name="colaboradores" id="sis-colaboradores">
+              <option value="ninguno">Seleccione un colaborador</option>
+              <option value="serivicioCliente">Servicio al Cliente</option>
+              <option value="jefeTecnico">Jefe Tecnico</option>
+            </select>
+          </div>
         </div>
 
-        <div class="colaboradores">
-          <label for="">Añadir Colaboradores</label>
-          <select name="colaboradores" id="sis-colaboradores">
-            <option value="ninguno">Seleccione un colaborador</option>
-            <option value="serivicioCliente">Servicio al Cliente</option>
-            <option value="jefeTecnico">Jefe Tecnico</option>
-          </select>
-        </div>
-      </div>
+        <input type="submit" class="boton" id="crear" name="crear" value="Aceptar" />
+        <input type="reset" class="boton" id="cancelar" name="cancelar" value="Cancelar" />
+
+      </form>
     </div>
 
   </div>

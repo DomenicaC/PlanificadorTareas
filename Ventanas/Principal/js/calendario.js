@@ -9,7 +9,49 @@ window.onload = function () {
     hoy = new Date(); //objeto fecha actual
     diasemhoy = hoy.getDay(); //dia semana actual
     diahoy = hoy.getDate(); //dia mes actual
+
+    if (diahoy == 1) {
+        diahoy = 01;
+    } else if (diahoy == 2) {
+        diahoy = 02;
+    } else if (diahoy == 3) {
+        diahoy = 03;
+    } else if (diahoy == 4) {
+        diahoy = 04;
+    } else if (diahoy == 5) {
+        diahoy = 05;
+    } else if (diahoy == 6) {
+        diahoy = 06;
+    } else if (diahoy == 7) {
+        diahoy = 08;
+    } else if (diahoy == 8) {
+        diahoy = 08;
+    } else if (diahoy == 9) {
+        diahoy = 09;
+    }
+
     meshoy = hoy.getMonth(); //mes actual
+
+    if (meshoy == 1) {
+        meshoy = 01;
+    } else if (meshoy == 2) {
+        meshoy = 02;
+    } else if (meshoy == 3) {
+        meshoy = 03;
+    } else if (meshoy == 4) {
+        meshoy = 04;
+    } else if (meshoy == 5) {
+        meshoy = 05;
+    } else if (meshoy == 6) {
+        meshoy = 06;
+    } else if (meshoy == 7) {
+        meshoy = 08;
+    } else if (meshoy == 8) {
+        meshoy = 08;
+    } else if (meshoy == 9) {
+        meshoy = 09;
+    }
+
     annohoy = hoy.getFullYear(); //año actual
     // Elementos del DOM: en cabecera de calendario 
     tit = document.getElementById("titulos"); //cabecera del calendario
@@ -72,7 +114,49 @@ function escribirdias() {
         fila = document.getElementById("fila" + i);
         for (j = 0; j < 7; j++) {
             midia = diames.getDate()
+
+            if (midia == 1) {
+                midia = 01;
+            } else if (midia == 2) {
+                midia = 02;
+            } else if (midia == 3) {
+                midia = 03;
+            } else if (midia == 4) {
+                midia = 04;
+            } else if (midia == 5) {
+                midia = 05;
+            } else if (midia == 6) {
+                midia = 06;
+            } else if (midia == 7) {
+                midia = 08;
+            } else if (midia == 8) {
+                midia = 08;
+            } else if (midia == 9) {
+                midia = 09;
+            }
+
             mimes = diames.getMonth()
+
+            if (mimes == 1) {
+                mimes = 01;
+            } else if (mimes == 2) {
+                mimes = 02;
+            } else if (mimes == 3) {
+                mimes = 03;
+            } else if (mimes == 4) {
+                mimes = 04;
+            } else if (mimes == 5) {
+                mimes = 05;
+            } else if (mimes == 6) {
+                mimes = 06;
+            } else if (mimes == 7) {
+                mimes = 08;
+            } else if (mimes == 8) {
+                mimes = 08;
+            } else if (mimes == 9) {
+                mimes = 09;
+            }
+
             mianno = diames.getFullYear()
             celda = fila.getElementsByTagName("a")[j];
             //fila.getElementsByTagName("a")[j].setAtribute("href", j);
@@ -164,9 +248,51 @@ function fechaActualMes() {
     mes = document.getElementById("mes");
     diaMes = new Date();
     midia = diaMes.getDate();
+
+    if (midia == 1) {
+        midia = 01;
+    } else if (midia == 2) {
+        midia = 02;
+    } else if (midia == 3) {
+        midia = 03;
+    } else if (midia == 4) {
+        midia = 04;
+    } else if (midia == 5) {
+        midia = 05;
+    } else if (midia == 6) {
+        midia = 06;
+    } else if (midia == 7) {
+        midia = 08;
+    } else if (midia == 8) {
+        midia = 08;
+    } else if (midia == 9) {
+        midia = 09;
+    }
+
     mimes = diaMes.getMonth();
+
+    if (mimes == 1) {
+        mimes = 01;
+    } else if (mimes == 2) {
+        mimes = 02;
+    } else if (mimes == 3) {
+        mimes = 03;
+    } else if (mimes == 4) {
+        mimes = 04;
+    } else if (mimes == 5) {
+        mimes = 05;
+    } else if (mimes == 6) {
+        mimes = 06;
+    } else if (mimes == 7) {
+        mimes = 08;
+    } else if (mimes == 8) {
+        mimes = 08;
+    } else if (mimes == 9) {
+        mimes = 09;
+    }
+
     mianno = diaMes.getFullYear();
-    fecha = "" + midia + "." + (mimes+1) + "." + mianno;
+    fecha = "" + midia + "." + (mimes + 1) + "." + mianno;
     mes.href = "/Planificador/Ventanas/Principal/mes/mes.php?fecha=" + fecha;
 }
 
@@ -176,6 +302,6 @@ function fechaActualPrin() {
     midia = diaMes.getDate();
     mimes = diaMes.getMonth();
     mianno = diaMes.getFullYear();
-    fecha = "" + midia + "." + (mimes+1) + "." + mianno;
+    fecha = "" + midia + "." + (mimes + 1) + "." + mianno;
     prin.href = "/Planificador/Ventanas/Principal/principal/principal.php?fecha=" + fecha;
 }

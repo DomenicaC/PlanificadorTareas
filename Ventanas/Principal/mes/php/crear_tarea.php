@@ -7,23 +7,26 @@
     <style type="text/css" rel="stylesheet">
 
     </style>
-    <link href="../../css/estilos.css" rel="stylesheet" />
+
 </head>
 
 <body>
 
     <?php
     // abrir conexion
-    include '../../config/conexionBD.php';
+    include '../../../../config/conexionBD.php';
 
-    $codigo = isset($_POST["codigo"]) ? trim($_POST["codigo"]) : null;
-    $nombre = isset($_POST["nombre"]) ? mb_strtoupper(trim($_POST["nombre"]), 'UTF-8') : null;
-    $descripcion = isset($_POST["descripcion"]) ? mb_strtoupper(trim($_POST["descripcion"]), 'UTF-8') : null;
-    $horaInicio = isset($_POST["horaInicio"]) ? mb_strtoupper(trim($_POST["horaInicio"]), 'UTF-8') : null;
+    //$codigo = 0;
+    $nombre = isset($_POST["nombre"]) ? trim($_POST["nombre"]) : null;
+    $descripcion = isset($_POST["descripcion"]) ? trim($_POST["descripcion"]) : null;
+    $horaInicio = isset($_POST["horaInicio"]) ? trim($_POST["horaInicio"]) : null;
     $horaFinal = isset($_POST["horaFinal"]) ? trim($_POST["horaFinal"]) : null;
-    $codColab = isset($_POST["codColab"]) ? trim($_POST["codColab"]) : null;
+    $codColab = 1; //isset($_POST["codColab"]) ? trim($_POST["codColab"]) : null;
+    $fecha = '5.1.2022'; //isset($_POST["fecha"]) ? mb_strtoupper(trim($_POST["fecha"]), 'UTF-8') : null;
+    $estado = 0;
 
-    $sql = "INSERT INTO usuario VALUES (0, '$codigo', '$nombre', '$descripcion', '$horaInicio', '$horaFinal','$codColab')";
+    //INSERT INTO tarea VALUES (10, 'as', 'as', '16:00', '15:00',1, '1');
+    $sql = "INSERT INTO tarea VALUES (0, '$nombre', '$descripcion', '$horaInicio', '$horaFinal', $codColab, '$fecha', $estado)";/*,$codColab',$fecha*/
 
     if ($conn->query($sql) === TRUE) {
         echo "<p>Se ha insertado la tarea correctamemte!!!</p>";

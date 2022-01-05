@@ -15,6 +15,7 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
     <link href="../../../css/princi.css" rel="stylesheet" />
     <link href="../../../css/general.css" rel="stylesheet" />
     <script src="../js/calendario.js" type="text/javascript"></script>
+  <script src="../js/reloj.js" type="text/javascript"></script>
 
 </head>
 
@@ -56,6 +57,45 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
 
     <section class="uno">
         <h2>Seccion de dos columnas</h2>
+        <table>
+            <tr>
+                <th>Total de tareas</th>
+                <th>Tareas no Realizadas</th>
+                <th>Tareas Realizadas</th>
+            </tr>
+
+            <?php
+
+            include '../../../config/conexionBD.php';
+            $fecha = $_GET["fecha"];
+            $sql = "SELECT COUNT(*) FROM tarea WHERE tar_fecha = '$fecha'";
+            $result = $conn->query($sql);
+            $tourresult = $result->fetch_array()[0] ?? '';
+
+            $sql1 = "SELECT COUNT(*) FROM tarea WHERE tar_fecha = '$fecha' AND tar_estado = 0";
+            $result1 = $conn->query($sql1);
+            $tourresult1 = $result1->fetch_array()[0] ?? '';
+
+            $sql2 = "SELECT COUNT(*) FROM tarea WHERE tar_fecha = '$fecha' AND tar_estado = 1";
+            $result2 = $conn->query($sql2);
+            $tourresult2 = $result2->fetch_array()[0] ?? '';
+
+            echo($tourresult);
+            echo($tourresult1);
+            echo($tourresult2);
+
+            if ($tourresult > 0) {
+
+                echo "<tr>";
+                echo "<th>" . $tourresult ."</th>";
+                echo "<th>" . $tourresult1 ."</th>";
+                echo "<th>" . $tourresult2 ."</th>";
+                echo "</tr>";
+            }
+
+            ?>
+
+        </table>
         <img src="../../../images/diagrama/driagraPastel.jpeg" " />
     </section>
 
@@ -69,7 +109,8 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
             </tr>
             <?php
             include '../../../config/conexionBD.php';
-            $sql = "SELECT * FROM tarea WHERE tar_fecha = '21.11.21'";
+            $fecha = $_GET["fecha"];
+            $sql = "SELECT * FROM tarea WHERE tar_fecha = '$fecha'";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {

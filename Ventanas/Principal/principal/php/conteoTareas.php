@@ -1,0 +1,54 @@
+<?php
+    //incluir conexión a la base de datos
+    include "../../../config/conexionBD.php";
+    $cedula = $_GET['cedula'];
+    //echo "Hola " . $cedula;
+
+    $sql = "SELECT COUNT(*) FROM tarea";
+    //cambiar la consulta para puede buscar por ocurrencias de letras
+    $result = $conn->query($sql);
+
+    $sql1 = "SELECT COUNT(*) FROM tarea WHERE tar_estado = 0";
+    //cambiar la consulta para puede buscar por ocurrencias de letras
+    $result1 = $conn->query($sql1);
+
+    $sql2 = "SELECT COUNT(*) FROM tarea WHERE tar_estado = 1";
+    //cambiar la consulta para puede buscar por ocurrencias de letras
+    $result2 = $conn->query($sql2);
+    echo($result);
+    echo($result1);
+    echo($result2);
+
+    echo " <table style='width:100%'>
+            <tr>
+            <th>Total de tareas</th>
+            <th>Tareas Realizadas</th>
+            <th>Tareas </th>
+            <th>Dirección</th>
+            <th>Telefono</th>
+            <th>Correo</th>
+            <th>Fecha Nacimiento</th>
+            <th></th>
+            <th></th>
+            <th></th>
+            </tr>";
+    /*if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            echo "<tr>";
+            echo " <td>" . $row['usu_cedula'] . "</td>";
+            echo " <td>" . $row['usu_nombres'] ."</td>";
+            echo " <td>" . $row['usu_apellidos'] . "</td>";
+            echo " <td>" . $row['usu_direccion'] . "</td>";
+            echo " <td>" . $row['usu_telefono'] . "</td>";
+            echo " <td>" . $row['usu_correo'] . "</td>";
+            echo " <td>" . $row['usu_fecha_nacimiento'] . "</td>";
+            echo "</tr>";
+        }
+    } else {
+        echo "<tr>";
+        echo " <td colspan='7'> No existen usuarios registradas en el sistema </td>";
+        echo "</tr>";
+    }*/
+    echo "</table>";    
+    $conn->close();
+?>
