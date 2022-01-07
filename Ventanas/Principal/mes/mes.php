@@ -13,7 +13,8 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../../../css/mes.css">
-  <link rel="stylesheet" href="../../../css/general.css">
+  <link rel="stylesheet" href="../../../css/general.css">  
+  <link rel="stylesheet" href="../../../css/tablas.css">
   <script src="../js/calendario.js" type="text/javascript"></script>
   <script src="../js/reloj.js" type="text/javascript"></script>
   <title>Agenda Mes</title>
@@ -35,7 +36,6 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
     <nav>
       <ul>
         <li><a href="" id=prin onclick="fechaActualPrin()"> Página Principal </a></li>
-        <li><a href="../dia/dia.php"> Día </a> </li>
         <li><a href="../semana/semana.php"> Semana </a></li>
         <li><a href="" id=mes onclick="fechaActualMes()"> Mes </a></li>
       </ul>
@@ -148,7 +148,7 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
     <div>
       <a href="#miModal"><img src="../../../images/iconos/mas.png" style="width: 2rem;" /> <span>Añadir tarea</span></a>
     </div>
-    <table class="tablas" style="width:100%">
+    <table style="width:100%" class="responstable">
       <tr>
         <th>Codigo</th>
         <th>Nombre</th>
@@ -217,7 +217,7 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
         <div class="seleccionInformacion">
           <h2>Seleccion de Información</h2>
           <div class="informacion">
-            <label for="">Título Tarea:</label>
+            <label for="">Nombre Tarea:</label>
             <input type="text" id="nombre" name="nombre" value="" placeholder="Ingrese el título de la tarea..." required> <br>
 
             <label for="">Descripción Tarea:</label><Br />
@@ -234,11 +234,41 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
               <option value="serivicioCliente">Servicio al Cliente</option>
               <option value="jefeTecnico">Jefe Tecnico</option>
             </select>
+
+            <table style="width:100%" class="responstable">
+            <tr>
+                <th>Seleccionar</th>
+                <th>Codigo</th>
+                <th>Nombre</th>
+            </tr>
+            <?php
+            include '../../../config/conexionBD.php';
+            $fecha = $_GET["fecha"];
+            $sql = "SELECT * FROM colaborador";
+            $result = $conn->query($sql);
+
+            if ($result->num_rows > 0) {
+
+                while ($row = $result->fetch_assoc()) {
+                    echo "<tr>";
+                    echo "<td><input type='radio' /></td>";
+                    echo " <td>" . $row["col_codigo"] . "</td>";
+                    echo " <td>" . $row['col_nombre'] . "</td>";
+                    echo "</tr>";
+                }
+            } else {
+                echo "<tr>";
+                echo " <td colspan='7'> No colaboradores</td>";
+                echo "</tr>";
+            }
+            $conn->close();
+            ?>
+        </table>
+
           </div>
         </div>
 
         <input type="submit" class="boton" id="crear" name="crear" value="Aceptar" />
-        <input type="reset" class="boton" id="cancelar" name="cancelar" value="Cancelar" />
 
       </form>
     </div>

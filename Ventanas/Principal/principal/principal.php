@@ -14,8 +14,9 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
 
     <link href="../../../css/princi.css" rel="stylesheet" />
     <link href="../../../css/general.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../../css/tablas.css" type="text/css">
     <script src="../js/calendario.js" type="text/javascript"></script>
-  <script src="../js/reloj.js" type="text/javascript"></script>
+    <script src="../js/reloj.js" type="text/javascript"></script>
 
 </head>
 
@@ -36,7 +37,6 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
         <nav>
             <ul>
                 <li><a href="" id=prin onclick="fechaActualPrin()"> Página Principal </a></li>
-                <li><a href="../dia/dia.php"> Día </a> </li>
                 <li><a href="../semana/semana.php"> Semana </a></li>
                 <li><a href="" id=mes onclick="fechaActualMes()"> Mes </a></li>
             </ul>
@@ -54,10 +54,11 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
             <div class="jv"> <a href=""><img src="../../../images/iconos/jv.png" style="width: 2rem;" />Jefe Ventas</a> </div>
         </div>
     </section>
-
-    <section class="uno">
+    </br>
+    <section class="dos">
         <h2>Seccion de dos columnas</h2>
-        <table>
+        <table style="width:100%" class="responstable">
+
             <tr>
                 <th>Total de tareas</th>
                 <th>Tareas no Realizadas</th>
@@ -80,32 +81,39 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
             $result2 = $conn->query($sql2);
             $tourresult2 = $result2->fetch_array()[0] ?? '';
 
-            echo($tourresult);
-            echo($tourresult1);
-            echo($tourresult2);
+            echo ($tourresult);
+            echo ($tourresult1);
+            echo ($tourresult2);
 
+            //if ($result->num_rows > 0) {
             if ($tourresult > 0) {
 
                 echo "<tr>";
-                echo "<th>" . $tourresult ."</th>";
-                echo "<th>" . $tourresult1 ."</th>";
-                echo "<th>" . $tourresult2 ."</th>";
+                echo "<th>" . $tourresult . "</th>";
+                echo "<th>" . $tourresult1 . "</th>";
+                echo "<th>" . $tourresult2 . "</th>";
+                echo "</tr>";
+            } else {
+                echo "<tr>";
+                echo " <td colspan='7'> No existen tareas asignadas para hoy</td>";
                 echo "</tr>";
             }
 
             ?>
 
         </table>
-        <img src="../../../images/diagrama/driagraPastel.jpeg" " />
+
     </section>
 
     <section class=" dos">
         <h2>Tareas del día</h2>
-        <table style="width:100%">
+        <table style="width:100%" class="responstable">
             <tr>
+                <th>Realizado</th>
                 <th>Codigo</th>
                 <th>Nombre</th>
-                <th>Hora</th>
+                <th>Hora Inicio</th>
+                <th>Hora Fin</th>
             </tr>
             <?php
             include '../../../config/conexionBD.php';
@@ -117,9 +125,11 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
 
                 while ($row = $result->fetch_assoc()) {
                     echo "<tr>";
+                    echo "<td><input type='radio' /></td>";
                     echo " <td>" . $row["tar_codigo"] . "</td>";
                     echo " <td>" . $row['tar_nombre'] . "</td>";
                     echo " <td>" . $row['tar_horaInicio'] . "</td>";
+                    echo " <td>" . $row['tar_horaFin'] . "</td>";
                     echo " <td> <a href='eliminar.php?codigo=" . $row['tar_codigo'] . "'>Eliminar</a> </td>";
                     echo " <td> <a href='modificar.php?codigo=" . $row['tar_codigo'] . "'>Modificar</a> </td>";
                     echo "</tr>";
