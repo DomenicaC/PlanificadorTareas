@@ -13,8 +13,10 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../../../css/mes.css">
-  <link rel="stylesheet" href="../../../css/general.css">  
+  <link rel="stylesheet" href="../../../css/general.css">
   <link rel="stylesheet" href="../../../css/tablas.css">
+  </title>
+  <link rel="stylesheet" href="../../../css/tablas.css" type="text/css">
   <script src="../js/calendario.js" type="text/javascript"></script>
   <script src="../js/reloj.js" type="text/javascript"></script>
   <title>Agenda Mes</title>
@@ -229,41 +231,41 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
 
           <div class="colaboradores">
             <label for="">Añadir Colaboradores</label>
-            <select name="colaboradores" id="sis-colaboradores">
-              <option value="ninguno">Seleccione un colaborador</option>
-              <option value="serivicioCliente">Servicio al Cliente</option>
-              <option value="jefeTecnico">Jefe Tecnico</option>
-            </select>
-
             <table style="width:100%" class="responstable">
-            <tr>
+              <tr>
                 <th>Seleccionar</th>
-                <th>Codigo</th>
+                <th>Codigo col</th>
+                <th>Cedula</th>
                 <th>Nombre</th>
-            </tr>
-            <?php
-            include '../../../config/conexionBD.php';
-            $fecha = $_GET["fecha"];
-            $sql = "SELECT * FROM colaborador";
-            $result = $conn->query($sql);
+                <th>Sucursal</th>
+                <th>Cargo</th>
+              </tr>
+              <?php
+              include '../../../config/conexionBD.php';
+              $fecha = $_GET["fecha"];
+              $sql = "SELECT col_codigo, usu_cedula, usu_nombres, usu_sucursal, col_cargo  FROM usuario u, colaborador c WHERE u.usu_col_codigo = c.col_codigo";
+              $result = $conn->query($sql);
 
-            if ($result->num_rows > 0) {
+              if ($result->num_rows > 0) {
 
                 while ($row = $result->fetch_assoc()) {
-                    echo "<tr>";
-                    echo "<td><input type='radio' /></td>";
-                    echo " <td>" . $row["col_codigo"] . "</td>";
-                    echo " <td>" . $row['col_nombre'] . "</td>";
-                    echo "</tr>";
+                  echo "<tr>";
+                  echo "<td><input type='checkbox' /></td>";
+                  echo " <td>" . $row["col_codigo"] . "</td>";
+                  echo " <td>" . $row["usu_cedula"] . "</td>";
+                  echo " <td>" . $row["usu_nombres"] . "</td>";
+                  echo " <td>" . $row["usu_sucursal"] . "</td>";
+                  echo " <td>" . $row['col_cargo'] . "</td>";
+                  echo "</tr>";
                 }
-            } else {
+              } else {
                 echo "<tr>";
                 echo " <td colspan='7'> No colaboradores</td>";
                 echo "</tr>";
-            }
-            $conn->close();
-            ?>
-        </table>
+              }
+              $conn->close();
+              ?>
+            </table>
 
           </div>
         </div>

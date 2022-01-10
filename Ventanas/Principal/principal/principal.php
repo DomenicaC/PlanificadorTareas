@@ -125,7 +125,7 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
 
                 while ($row = $result->fetch_assoc()) {
                     echo "<tr>";
-                    echo "<td><input type='radio' /></td>";
+                    echo "<td><input type='checkbox' /></td>";
                     echo " <td>" . $row["tar_codigo"] . "</td>";
                     echo " <td>" . $row['tar_nombre'] . "</td>";
                     echo " <td>" . $row['tar_horaInicio'] . "</td>";

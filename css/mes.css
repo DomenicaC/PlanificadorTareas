@@ -172,10 +172,10 @@ h1 {
 /*Creacion de la pagina modal donde recoge los resultados */
 .modal-contenido {
   background-color: aqua;
-  width: 60%;
-  height: 70%;
-  padding: 10px 100px;
-  margin: 10% auto;
+  width: 70%;
+  height: 100%;
+  padding: 1px 50px;
+  margin: 2% auto;
   position: relative;
 }
 

@@ -6,7 +6,7 @@
     $usuario = isset($_POST["usuario"]) ? trim($_POST["usuario"]) : null;
     $contrasenia = isset($_POST["contrasenia"]) ? trim($_POST["contrasenia"]) : null;
 
-    $sql = "SELECT * FROM usuario WHERE  usuario = '$usuario' and contrasenia = '$contrasenia'";
+    $sql = "SELECT * FROM usuario WHERE  usu_usuario = '$usuario' and usu_contrasenia = '$contrasenia'";
 
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {

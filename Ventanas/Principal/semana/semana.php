@@ -58,29 +58,39 @@
 
                 if ($DiaSemana == 1) {
                     echo '<th class="dia">Lunes ' . date("d", strtotime($fecha_actual)) . '</th>
-                    <th class="dia">Martes ' . date("d", strtotime($fecha_actual . "+ 1 days")) . '</th>
-                    <th class="dia">Miércoles ' . date("d", strtotime($fecha_actual . "+ 2 days")) . '</th>
-                    <th class="dia">Jueves ' . date("d", strtotime($fecha_actual . "+ 3 days")) . '</th>
-                    <th class="dia">Viernes ' . date("d", strtotime($fecha_actual . "+ 4 days")) . '</th>
-                    <th class="dia">Sabado ' . date("d", strtotime($fecha_actual . "+ 5 days")) . '</th>';
+                <th class="dia">Martes ' . date("d", strtotime($fecha_actual . "+ 1 days")) . '</th>
+                <th class="dia">Miércoles ' . date("d", strtotime($fecha_actual . "+ 2 days")) . '</th>
+                <th class="dia">Jueves ' . date("d", strtotime($fecha_actual . "+ 3 days")) . '</th>
+                <th class="dia">Viernes ' . date("d", strtotime($fecha_actual . "+ 4 days")) . '</th>
+                <th class="dia">Sabado ' . date("d", strtotime($fecha_actual . "+ 5 days")) . '</th>';
 
-                    // conectar a la base
                     $DiaActual = date("d", mktime(0, 0, 0, date("m"), date("d"), date("Y")));
                     $DiaMes = date("m", mktime(0, 0, 0, date("m"), date("d"), date("Y")));
                     $DiaAnio = date("Y", mktime(0, 0, 0, date("m"), date("d"), date("Y")));
                     $FechaInicio = $DiaActual . "." . $DiaMes . "." . $DiaAnio;
-                    echo $FechaInicio;
-                    echo "</br>";
 
-                    $DiaActualF = date("d", mktime(0, 0, 0, date("m"), date("d") + 5, date("Y")));
-                    $DiaMesF = date("m", mktime(0, 0, 0, date("m"), date("d"), date("Y")));
-                    $DiaAnioF = date("Y", mktime(0, 0, 0, date("m"), date("d"), date("Y")));
-                    $FechaFinal = $DiaActualF . "." . $DiaMesF . "." . $DiaAnioF;
-                    echo $FechaFinal;
-
-                    //$sql = "SELECT * FROM usuario WHERE tar_fecha ='$FechaInicio' and contrasenia = '$'";
-                    //$result = $conn->query($sql);
-
+                    for ($i = 0; $i < 6; $i++) {
+                        //echo (date("d.m.Y", strtotime($fecha_actual . "" . $i . "days")));
+                        $fechaConsulta = date("d.m.Y", strtotime($fecha_actual . "" . $i . "days"));
+                        //echo "</br>";
+                        $sql = "SELECT * FROM tarea WHERE  tar_fecha ='$fechaConsulta'";
+                        $result = $conn->query($sql);
+                        if ($i == 0) {
+                            $tareasLunes = $result;
+                        } elseif ($i == 1) {
+                            $tareasMartes = $result;
+                        } elseif ($i == 2) {
+                            $tareasMiercoles = $result;
+                        } elseif ($i == 3) {
+                            $tareasJueves = $result;
+                        } elseif ($i == 4) {
+                            $tareasViernes = $result;
+                        } else {
+                            $tareasSabado = $result;
+                        }
+                        //echo $sql;
+                        //echo '</br>';
+                    }
                 }
 
                 if ($DiaSemana == 2) {
@@ -206,26 +216,90 @@
                 <td class="horas">8:00 a 8:30 </td>
 
                 <?php
-
-                while ($rowLu = $tareasLunes->fetch_assoc()) {
-                    echo ($rowLu["tar_horaInicio"] == "08:00" ? '<td class="Mates"><a href="../tareas/tareas.php?codigo=' . $rowLu["tar_codigo"] . '">' . $rowLu["tar_nombre"] . '</a></td>' : '<td class="Musica"><span> No hay tareas pendientes </span></td>');
-                }
-                while ($rowMar = $tareasMartes->fetch_assoc()) {
-                    echo ($rowMar["tar_horaInicio"] == "08:00" ? '<td class="Mates"><a href="../tareas/tareas.php?codigo=' . $rowLu["tar_codigo"] . '">' . $rowLu["tar_nombre"] . '</a></td>' : '<td class="Musica"><span> No hay tareas pendientes </span></td>');
-                }
-                while ($rowMier = $tareasMiercoles->fetch_assoc()) {
-                    echo ($rowMier["tar_horaInicio"] == "08:00" ? '<td class="Mates"><a href="../tareas/tareas.php?codigo=' . $rowMier["tar_codigo"] . '">' . $rowMier["tar_nombre"] . '</a></td>' : '<td class="Musica"><span> No hay tareas pendientes </span></td>');
-                }
-                while ($rowJu = $tareasJueves->fetch_assoc()) {
-                    echo ($rowJu["tar_horaInicio"] == "08:00" ? '<td class="Mates"><a href="../tareas/tareas.php?codigo=' . $rowJu["tar_codigo"] . '">' . $rowJu["tar_nombre"] . '</a></td>' : '<td class="Musica"><span> No hay tareas pendientes </span></td>');
-                }
-                while ($rowVi = $tareasViernes->fetch_assoc()) {
-                    echo ($rowVi["tar_horaInicio"] == "08:00" ? '<td class="Mates"><a href="../tareas/tareas.php?codigo=' . $rowVi["tar_codigo"] . '">' . $rowVi["tar_nombre"] . '</a></td>' : '<td class="Musica"><span> No hay tareas pendientes </span></td>');
-                }
-                while ($rowSa = $tareasSabado->fetch_assoc()) {
-                    echo ($rowSa["tar_horaInicio"] == "08:00" ? '<td class="Mates"><a href="../tareas/tareas.php?codigo=' . $rowSa["tar_codigo"] . '">' . $rowSa["tar_nombre"] . '</a></td>' : '<td class="Musica"><span> No hay tareas pendientes </span></td>');
+                if ($tareasLunes->num_rows > 0) {
+                    while ($rowLu = $tareasLunes->fetch_assoc()) {
+                        //echo ($rowLu["tar_horaInicio"] == "08:00" ? '<td class="Mates"><a href="../tareas/tareas.php?codigo=' . $rowLu["tar_codigo"] . '">' . $rowLu["tar_nombre"] . '</a></td>' : "");
+                        if ($rowLu["tar_horaInicio"] == "08:00") {
+                            echo '<td class="Mates"><a href="../tareas/tareas.php?codigo=' . $rowLu["tar_codigo"] . '">' . $rowLu["tar_nombre"] . '</a></td>';
+                            break;
+                        } else {
+                            echo '<td class="Musica"><span> No hay tareas pendientes </span></td>';
+                        }
+                    }
+                } else {
+                    echo '<td class="Musica"><span> No hay tareas pendientes </span></td>';
                 }
 
+                if ($tareasMartes->num_rows > 0) {
+                    while ($rowMar = $tareasMartes->fetch_assoc()) {
+                        //echo ($rowMar["tar_horaInicio"] == "09:00" ? '<td class="Mates"><a href="../tareas/tareas.php?codigo=' . $rowMar["tar_codigo"] . '">' . $rowMar["tar_nombre"] . '</a></td>' : '<td class="Musica"><span> No hay tareas pendientes </span></td>');
+                        if ($rowMar["tar_horaInicio"] == "08:00") {
+                            echo '<td class="Mates"><a href="../tareas/tareas.php?codigo=' . $rowLu["tar_codigo"] . '">' . $rowLu["tar_nombre"] . '</a></td>';
+                            break;
+                        } else {
+                            echo '<td class="Musica"><span> No hay tareas pendientes jueves </span></td>';
+                        }
+                    }
+                } else {
+                    echo '<td class="Musica"><span> No hay tareas pendientes Martes</span></td>';
+                }
+
+
+                if ($tareasMiercoles->num_rows > 0) {
+                    while ($rowMier = $tareasMiercoles->fetch_assoc()) {
+                        //echo ($rowMier["tar_horaInicio"] == "08:00" ? '<td class="Mates"><a href="../tareas/tareas.php?codigo=' . $rowMier["tar_codigo"] . '">' . $rowMier["tar_nombre"] . '</a></td>' : '<td class="Musica"><span> No hay tareas pendientes </span></td>');
+                        if ($rowMier["tar_horaInicio"] == "08:00") {
+                            echo '<td class="Mates"><a href="../tareas/tareas.php?codigo=' . $rowLu["tar_codigo"] . '">' . $rowLu["tar_nombre"] . '</a></td>';
+                            break;
+                        } else {
+                            echo '<td class="Musica"><span> No hay tareas pendientes jueves </span></td>';
+                        }
+                    }
+                } else {
+                    echo '<td class="Musica"><span> No hay tareas pendientesmiercoles </span></td>';
+                }
+
+                if ($tareasJueves->num_rows > 0) {
+                    while ($rowJu = $tareasJueves->fetch_assoc()) {
+                        //echo ($rowJu["tar_horaInicio"] == "09:00" ? '<td class="Mates"><a href="../tareas/tareas.php?codigo=' . $rowJu["tar_codigo"] . '">' . $rowJu["tar_nombre"] . '</a></td>' : '<td class="Musica"><span> No hay tareas pendientes </span></td>');
+                        if ($rowJu["tar_horaInicio"] == "08:00") {
+                            echo '<td class="Mates"><a href="../tareas/tareas.php?codigo=' . $rowLu["tar_codigo"] . '">' . $rowLu["tar_nombre"] . '</a></td>';
+                            break;
+                        } else {
+                            echo '<td class="Musica"><span> No hay tareas pendientes jueves </span></td>';
+                        }
+                    }
+                } else {
+                    echo '<td class="Musica"><span> No hay tareas pendientes jueves </span></td>';
+                }
+
+                if ($tareasViernes->num_rows > 0) {
+                    while ($rowVi = $tareasViernes->fetch_assoc()) {
+                        //echo ($rowVi["tar_horaInicio"] == "08:00" ? '<td class="Mates"><a href="../tareas/tareas.php?codigo=' . $rowVi["tar_codigo"] . '">' . $rowVi["tar_nombre"] . '</a></td>' : '<td class="Musica"><span> No hay tareas pendientes </span></td>');
+                        if ($rowVi["tar_horaInicio"] == "08:00") {
+                            echo '<td class="Mates"><a href="../tareas/tareas.php?codigo=' . $rowLu["tar_codigo"] . '">' . $rowLu["tar_nombre"] . '</a></td>';
+                            break;
+                        } else {
+                            echo '<td class="Musica"><span> No hay tareas pendientes jueves </span></td>';
+                        }
+                    }
+                } else {
+                    echo '<td class="Musica"><span> No hay tareas pendientes viernes</span></td>';
+                }
+
+                if ($tareasSabado->num_rows > 0) {
+                    while ($rowSa = $tareasSabado->fetch_assoc()) {
+                        //echo ($rowSa["tar_horaInicio"] == "08:00" ? '<td class="Mates"><a href="../tareas/tareas.php?codigo=' . $rowSa["tar_codigo"] . '">' . $rowSa["tar_nombre"] . '</a></td>' : '<td class="Musica"><span> No hay tareas pendientes </span></td>');
+                        if ($rowSa["tar_horaInicio"] == "08:00") {
+                            echo '<td class="Mates"><a href="../tareas/tareas.php?codigo=' . $rowLu["tar_codigo"] . '">' . $rowLu["tar_nombre"] . '</a></td>';
+                            break;
+                        } else {
+                            echo '<td class="Musica"><span> No hay tareas pendientes jueves </span></td>';
+                        }
+                    }
+                } else {
+                    echo '<td class="Musica"><span> No hay tareas pendientes sabado</span></td>';
+                }
                 ?>
             </tr>
 
@@ -233,52 +307,194 @@
             <tr>
                 <td class="horas">8:30 a 09:00 </td>
                 <?php
-                while ($rowLu = $tareasLunes->fetch_assoc()) {
-                    echo ($rowLu["tar_horaInicio"] == "08:30" ? '<td class="Mates"><a href="../tareas/tareas.php?codigo=' . $rowLu["tar_codigo"] . '">' . $rowLu["tar_nombre"] . '</a></td>' : '<td class="Musica"><span> No hay tareas pendientes </span></td>');
-                }
-                while ($rowMar = $tareasMartes->fetch_assoc()) {
-                    echo ($rowMar["tar_horaInicio"] == "08:30" ? '<td class="Mates"><a href="../tareas/tareas.php?codigo=' . $rowLu["tar_codigo"] . '">' . $rowLu["tar_nombre"] . '</a></td>' : '<td class="Musica"><span> No hay tareas pendientes </span></td>');
-                }
-                while ($rowMier = $tareasMiercoles->fetch_assoc()) {
-                    echo ($rowMier["tar_horaInicio"] == "08:30" ? '<td class="Mates"><a href="../tareas/tareas.php?codigo=' . $rowMier["tar_codigo"] . '">' . $rowMier["tar_nombre"] . '</a></td>' : '<td class="Musica"><span> No hay tareas pendientes </span></td>');
-                }
-                while ($rowJu = $tareasJueves->fetch_assoc()) {
-                    echo ($rowJu["tar_horaInicio"] == "08:30" ? '<td class="Mates"><a href="../tareas/tareas.php?codigo=' . $rowJu["tar_codigo"] . '">' . $rowJu["tar_nombre"] . '</a></td>' : '<td class="Musica"><span> No hay tareas pendientes </span></td>');
-                }
-                while ($rowVi = $tareasViernes->fetch_assoc()) {
-                    echo ($rowVi["tar_horaInicio"] == "08:30" ? '<td class="Mates"><a href="../tareas/tareas.php?codigo=' . $rowVi["tar_codigo"] . '">' . $rowVi["tar_nombre"] . '</a></td>' : '<td class="Musica"><span> No hay tareas pendientes </span></td>');
-                }
-                while ($rowSa = $tareasSabado->fetch_assoc()) {
-                    echo ($rowSa["tar_horaInicio"] == "08:30" ? '<td class="Mates"><a href="../tareas/tareas.php?codigo=' . $rowSa["tar_codigo"] . '">' . $rowSa["tar_nombre"] . '</a></td>' : '<td class="Musica"><span> No hay tareas pendientes </span></td>');
+                if ($tareasLunes->num_rows > 0) {
+
+                    while ($fila = mysqli_fetch_row($tareasLunes)) {
+                        echo 'hola';
+                    }
+
+                    // while ($rowLu = $tareasLunes->fetch_assoc()) {
+                    //     //echo ($rowLu["tar_horaInicio"] == "08:30" ? '<td class="Mates"><a href="../tareas/tareas.php?codigo=' . $rowLu["tar_codigo"] . '">' . $rowLu["tar_nombre"] . '</a></td>' : '<td class="Musica"><span> No hay tareas pendientes </span></td>'); 
+                    //     echo 'andansdjsand';
+                    //     if($rowLu["tar_horaInicio"]=="08:30"){
+                    //         echo '<td class="Mates"><a href="../tareas/tareas.php?codigo=' . $rowLu["tar_codigo"] . '">' . $rowLu["tar_nombre"] . '</a></td>';
+                    //         break;
+                    //     }else{
+                    //         echo '<td class="Musica"><span> No hay tareas pendientes lunes </span></td>';
+                    //     }
+                    // }
+                } else {
+                    echo '<td class="Musica"><span> No hay tareas pendientes L</span></td>';
                 }
 
+                if ($tareasMartes->num_rows > 0) {
+                    while ($rowMar = $tareasMartes->fetch_assoc()) {
+                        //echo ($rowMar["tar_horaInicio"] == "08:30" ? '<td class="Mates"><a href="../tareas/tareas.php?codigo=' . $rowMar["tar_codigo"] . '">' . $rowMar["tar_nombre"] . '</a></td>' : '<td class="Musica"><span> No hay tareas pendientes </span></td>');
+                        if ($rowMar["tar_horaInicio"] == "08:30") {
+                            echo '<td class="Mates"><a href="../tareas/tareas.php?codigo=' . $rowLu["tar_codigo"] . '">' . $rowLu["tar_nombre"] . '</a></td>';
+                            break;
+                        } else {
+                            echo '<td class="Musica"><span> No hay tareas pendientes jueves </span></td>';
+                        }
+                    }
+                } else {
+                    echo '<td class="Musica"><span> No hay tareas pendientes M</span></td>';
+                }
+
+                if ($tareasMiercoles->num_rows > 0) {
+                    while ($rowMier = $tareasMiercoles->fetch_assoc()) {
+                        //echo ($rowMier["tar_horaInicio"] == "08:30" ? '<td class="Mates"><a href="../tareas/tareas.php?codigo=' . $rowMier["tar_codigo"] . '">' . $rowMier["tar_nombre"] . '</a></td>' : '<td class="Musica"><span> No hay tareas pendientes </span></td>');
+                        if ($rowMier["tar_horaInicio"] == "08:30") {
+                            echo '<td class="Mates"><a href="../tareas/tareas.php?codigo=' . $rowLu["tar_codigo"] . '">' . $rowLu["tar_nombre"] . '</a></td>';
+                            break;
+                        } else {
+                            echo '<td class="Musica"><span> No hay tareas pendientes jueves </span></td>';
+                        }
+                    }
+                } else {
+                    echo '<td class="Musica"><span> No hay tareas pendientes Mi</span></td>';
+                }
+
+                if ($tareasJueves->num_rows > 0) {
+                    while ($rowJu = $tareasJueves->fetch_assoc()) {
+                        //echo ($rowJu["tar_horaInicio"] == "08:30" ? '<td class="Mates"><a href="../tareas/tareas.php?codigo=' . $rowJu["tar_codigo"] . '">' . $rowJu["tar_nombre"] . '</a></td>' : '<td class="Musica"><span> No hay tareas pendientes </span></td>');
+                        if ($rowJu["tar_horaInicio"] == "08:30") {
+                            echo '<td class="Mates"><a href="../tareas/tareas.php?codigo=' . $rowLu["tar_codigo"] . '">' . $rowLu["tar_nombre"] . '</a></td>';
+                            break;
+                        } else {
+                            echo '<td class="Musica"><span> No hay tareas pendientes jueves </span></td>';
+                        }
+                    }
+                } else {
+                    echo '<td class="Musica"><span> No hay tareas pendientes J</span></td>';
+                }
+
+                if ($tareasViernes->num_rows > 0) {
+                    while ($rowVi = $tareasViernes->fetch_assoc()) {
+                        //echo ($rowVi["tar_horaInicio"] == "08:30" ? '<td class="Mates"><a href="../tareas/tareas.php?codigo=' . $rowVi["tar_codigo"] . '">' . $rowVi["tar_nombre"] . '</a></td>' : '<td class="Musica"><span> No hay tareas pendientes </span></td>');
+                        if ($rowVi["tar_horaInicio"] == "08:30") {
+                            echo '<td class="Mates"><a href="../tareas/tareas.php?codigo=' . $rowLu["tar_codigo"] . '">' . $rowLu["tar_nombre"] . '</a></td>';
+                            break;
+                        } else {
+                            echo '<td class="Musica"><span> No hay tareas pendientes jueves </span></td>';
+                        }
+                    }
+                } else {
+                    echo '<td class="Musica"><span> No hay tareas pendientes V</span></td>';
+                }
+
+                if ($tareasSabado->num_rows > 0) {
+                    while ($rowSa = $tareasSabado->fetch_assoc()) {
+                        //echo ($rowSa["tar_horaInicio"] == "08:30" ? '<td class="Mates"><a href="../tareas/tareas.php?codigo=' . $rowSa["tar_codigo"] . '">' . $rowSa["tar_nombre"] . '</a></td>' : '<td class="Musica"><span> No hay tareas pendientes </span></td>');
+                        if ($rowSa["tar_horaInicio"] == "08:30") {
+                            echo '<td class="Mates"><a href="../tareas/tareas.php?codigo=' . $rowLu["tar_codigo"] . '">' . $rowLu["tar_nombre"] . '</a></td>';
+                            break;
+                        } else {
+                            echo '<td class="Musica"><span> No hay tareas pendientes jueves </span></td>';
+                        }
+                    }
+                } else {
+                    echo '<td class="Musica"><span> No hay tareas pendientes S</span></td>';
+                }
                 ?>
-
             </tr>
+
+
+
             <tr>
                 <td class="horas">9:00 a 9:30 </td>
                 <?php
-                while ($rowLu = $tareasLunes->fetch_assoc()) {
-                    echo ($rowLu["tar_horaInicio"] == "09:00" ? '<td class="Mates"><a href="../tareas/tareas.php?codigo=' . $rowLu["tar_codigo"] . '">' . $rowLu["tar_nombre"] . '</a></td>' : '<td class="Musica"><span> No hay tareas pendientes </span></td>');
+                if ($tareasLunes->num_rows > 0) {
+
+                    while ($rowLu = $tareasLunes->fetch_assoc()) {
+                        //echo ($rowLu["tar_horaInicio"] == "09:00" ? '<td class="Mates"><a href="../tareas/tareas.php?codigo=' . $rowLu["tar_codigo"] . '">' . $rowLu["tar_nombre"] . '</a></td>' : '<td class="Musica"><span> No hay tareas pendientes </span></td>'); 
+                        if ($rowLu["tar_horaInicio"] == "09:00") {
+                            echo '<td class="Mates"><a href="../tareas/tareas.php?codigo=' . $rowLu["tar_codigo"] . '">' . $rowLu["tar_nombre"] . '</a></td>';
+                            break;
+                        } else {
+                            echo '<td class="Musica"><span> No hay tareas pendientes lunes </span></td>';
+                        }
+                    }
+                } else {
+                    echo '<td class="Musica"><span> No hay tareas pendientes lunes</span></td>';
                 }
-                while ($rowMar = $tareasMartes->fetch_assoc()) {
-                    echo ($rowMar["tar_horaInicio"] == "09:00" ? '<td class="Mates"><a href="../tareas/tareas.php?codigo=' . $rowLu["tar_codigo"] . '">' . $rowLu["tar_nombre"] . '</a></td>' : '<td class="Musica"><span> No hay tareas pendientes </span></td>');
+
+                if ($tareasMartes->num_rows > 0) {
+                    while ($rowMar = $tareasMartes->fetch_assoc()) {
+                        //echo ($rowMar["tar_horaInicio"] == "09:00" ? '<td class="Mates"><a href="../tareas/tareas.php?codigo=' . $rowMar["tar_codigo"] . '">' . $rowMar["tar_nombre"] . '</a></td>' : '<td class="Musica"><span> No hay tareas pendientes </span></td>');
+                        if ($rowMar["tar_horaInicio"] == "09:00") {
+                            echo '<td class="Mates"><a href="../tareas/tareas.php?codigo=' . $rowLu["tar_codigo"] . '">' . $rowLu["tar_nombre"] . '</a></td>';
+                            break;
+                        } else {
+                            echo '<td class="Musica"><span> No hay tareas pendientes jueves </span></td>';
+                        }
+                    }
+                } else {
+                    echo '<td class="Musica"><span> No hay tareas pendientes martes </span></td>';
                 }
-                while ($rowMier = $tareasMiercoles->fetch_assoc()) {
-                    echo ($rowMier["tar_horaInicio"] == "09:00" ? '<td class="Mates"><a href="../tareas/tareas.php?codigo=' . $rowMier["tar_codigo"] . '">' . $rowMier["tar_nombre"] . '</a></td>' : '<td class="Musica"><span> No hay tareas pendientes </span></td>');
+
+                if ($tareasMiercoles->num_rows > 0) {
+                    while ($rowMier = $tareasMiercoles->fetch_assoc()) {
+                        //echo ($rowMier["tar_horaInicio"] == "09:00" ? '<td class="Mates"><a href="../tareas/tareas.php?codigo=' . $rowMier["tar_codigo"] . '">' . $rowMier["tar_nombre"] . '</a></td>' : '<td class="Musica"><span> No hay tareas pendientes </span></td>');
+                        if ($rowMier["tar_horaInicio"] == "09:00") {
+                            echo '<td class="Mates"><a href="../tareas/tareas.php?codigo=' . $rowLu["tar_codigo"] . '">' . $rowLu["tar_nombre"] . '</a></td>';
+                            break;
+                        } else {
+                            echo '<td class="Musica"><span> No hay tareas pendientes jueves </span></td>';
+                        }
+                    }
+                } else {
+                    echo '<td class="Musica"><span> No hay tareas pendientes </span></td>';
                 }
-                while ($rowJu = $tareasJueves->fetch_assoc()) {
-                    echo ($rowJu["tar_horaInicio"] == "09:00" ? '<td class="Mates"><a href="../tareas/tareas.php?codigo=' . $rowJu["tar_codigo"] . '">' . $rowJu["tar_nombre"] . '</a></td>' : '<td class="Musica"><span> No hay tareas pendientes </span></td>');
+
+                if ($tareasJueves->num_rows > 0) {
+                    while ($rowJu = $tareasJueves->fetch_assoc()) {
+
+                        //echo ($rowJu["tar_horaInicio"] == "09:00" ? '<td class="Mates"><a href="../tareas/tareas.php?codigo=' . $rowJu["tar_codigo"] . '">' . $rowJu["tar_nombre"] . '</a></td>' : '<td class="Musica"><span> No hay tareas pendientes </span></td>');
+                        if ($rowJu["tar_horaInicio"] == "09:00") {
+                            echo '<td class="Mates"><a href="../tareas/tareas.php?codigo=' . $rowLu["tar_codigo"] . '">' . $rowLu["tar_nombre"] . '</a></td>';
+                            echo 'mfpsmfoismgoisgn';
+                            break;
+                        } else {
+                            echo '<td class="Musica"><span> No hay tareas pendientes jueves </span></td>';
+                        }
+                    }
+                } else {
+                    echo '<td class="Musica"><span> No hay tareas pendientes </span></td>';
                 }
-                while ($rowVi = $tareasViernes->fetch_assoc()) {
-                    echo ($rowVi["tar_horaInicio"] == "09:00" ? '<td class="Mates"><a href="../tareas/tareas.php?codigo=' . $rowVi["tar_codigo"] . '">' . $rowVi["tar_nombre"] . '</a></td>' : '<td class="Musica"><span> No hay tareas pendientes </span></td>');
+
+                if ($tareasViernes->num_rows > 0) {
+                    while ($rowVi = $tareasViernes->fetch_assoc()) {
+                        //echo ($rowVi["tar_horaInicio"] == "09:00" ? '<td class="Mates"><a href="../tareas/tareas.php?codigo=' . $rowVi["tar_codigo"] . '">' . $rowVi["tar_nombre"] . '</a></td>' : '<td class="Musica"><span> No hay tareas pendientes </span></td>');
+                        if ($rowVi["tar_horaInicio"] == "09:00") {
+                            echo '<td class="Mates"><a href="../tareas/tareas.php?codigo=' . $rowLu["tar_codigo"] . '">' . $rowLu["tar_nombre"] . '</a></td>';
+                            break;
+                        } else {
+                            echo '<td class="Musica"><span> No hay tareas pendientes jueves </span></td>';
+                        }
+                    }
+                } else {
+                    echo '<td class="Musica"><span> No hay tareas pendientes </span></td>';
                 }
-                while ($rowSa = $tareasSabado->fetch_assoc()) {
-                    echo ($rowSa["tar_horaInicio"] == "09:00" ? '<td class="Mates"><a href="../tareas/tareas.php?codigo=' . $rowSa["tar_codigo"] . '">' . $rowSa["tar_nombre"] . '</a></td>' : '<td class="Musica"><span> No hay tareas pendientes </span></td>');
+
+                if ($tareasSabado->num_rows > 0) {
+                    while ($rowSa = $tareasSabado->fetch_assoc()) {
+                        //echo ($rowSa["tar_horaInicio"] == "09:00" ? '<td class="Mates"><a href="../tareas/tareas.php?codigo=' . $rowSa["tar_codigo"] . '">' . $rowSa["tar_nombre"] . '</a></td>' : '<td class="Musica"><span> No hay tareas pendientes </span></td>');
+                        if ($rowSa["tar_horaInicio"] == "09:00") {
+                            echo '<td class="Mates"><a href="../tareas/tareas.php?codigo=' . $rowLu["tar_codigo"] . '">' . $rowLu["tar_nombre"] . '</a></td>';
+                            break;
+                        } else {
+                            echo '<td class="Musica"><span> No hay tareas pendientes jueves </span></td>';
+                        }
+                    }
+                } else {
+                    echo '<td class="Musica"><span> No hay tareas pendientes </span></td>';
                 }
 
                 ?>
             </tr>
+
+            <!-- --------------------------------------------------------------------------------------------------------------------------------------- -->
             <tr>
                 <td class="horas">9:30 a 10:00 </td>
                 <?php
