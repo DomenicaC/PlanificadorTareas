@@ -23,7 +23,7 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
 <body>
 
     <header class="enc1">
-        <img src="../../../images/iconos/calendar.png" alt="iconoLogo" />
+        <img src="../../../images/logo/logoOfi.png" alt="iconoLogo" />
         <br />
         <a class="cerrar" href="../../../config/cerrarSesion.php">Cerrar Sesión</a>
         <h1>Planificador Empresarial</h1>

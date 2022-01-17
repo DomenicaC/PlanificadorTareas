@@ -82,6 +82,11 @@ function escribirdias() {
             mianno = diames.getFullYear()
             celda = fila.getElementsByTagName("a")[j];
             //fila.getElementsByTagName("a")[j].setAtribute("href", j);
+            if (midia < 10) {
+                celda.innerHTML = "0" + midia;
+            } else {
+                celda.innerHTML = midia;
+            }
             fecha = "" + midia + "." + (mimes + 1) + "." + mianno;
             celda.href = "http://localhost/Planificador/Ventanas/Principal/mes/mes.php?fecha=" + fecha;
             celda.innerHTML = midia;
