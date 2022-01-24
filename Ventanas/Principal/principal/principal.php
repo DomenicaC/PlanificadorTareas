@@ -17,6 +17,7 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
     <link rel="stylesheet" href="../../../css/tablas.css" type="text/css">
     <script src="../js/calendario.js" type="text/javascript"></script>
     <script src="../js/reloj.js" type="text/javascript"></script>
+    <script src="../js/controlEstadoTar.js" type="text/javascript"></script>
 
 </head>
 
@@ -118,20 +119,22 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
             <?php
             include '../../../config/conexionBD.php';
             $fecha = $_GET["fecha"];
-            $sql = "SELECT * FROM tarea WHERE tar_fecha = '$fecha'";
+            $sql = "SELECT * FROM tarea WHERE tar_fecha = '$fecha' ORDER BY tar_horaInicio";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
 
                 while ($row = $result->fetch_assoc()) {
                     echo "<tr>";
-                    echo "<td><input type='checkbox' /></td>";
-                    echo " <td>" . $row["tar_codigo"] . "</td>";
+
+                    echo "<td><input type='checkbox' id = 'c'"  ?> . <?php if ($row['tar_estado'] == 1) echo 'checked'; ?> . "onclick = 'estado()'/></td>";
+            <?php
+                    echo " <td id = 'cod'>" . $row["tar_codigo"] . "</td>";
                     echo " <td>" . $row['tar_nombre'] . "</td>";
                     echo " <td>" . $row['tar_horaInicio'] . "</td>";
                     echo " <td>" . $row['tar_horaFin'] . "</td>";
                     echo " <td> <a href='eliminar.php?codigo=" . $row['tar_codigo'] . "'>Eliminar</a> </td>";
-                    echo " <td> <a href='modificar.php?codigo=" . $row['tar_codigo'] . "'>Modificar</a> </td>";
+                    echo " <td> <a href='../tareas/html/modificar.php?codigo=" . $row['tar_codigo'] . "'>Modificar</a> </td>";
                     echo "</tr>";
                 }
             } else {

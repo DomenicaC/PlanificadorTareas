@@ -80,16 +80,30 @@ function escribirdias() {
             mimes = diames.getMonth()
 
             mianno = diames.getFullYear()
+
             celda = fila.getElementsByTagName("a")[j];
+
             //fila.getElementsByTagName("a")[j].setAtribute("href", j);
-            if (midia < 10) {
-                celda.innerHTML = "0" + midia;
+            if (mimes < 9) {
+                if (midia < 10) {
+                    celda.innerHTML = "0" + midia;
+                    fecha = "0" + midia + ".0" + (mimes + 1) + "." + mianno;
+                } else {
+                    celda.innerHTML = midia;
+                    fecha = "" + midia + ".0" + (mimes + 1) + "." + mianno;
+                }
             } else {
-                celda.innerHTML = midia;
+                if (midia < 10) {
+                    celda.innerHTML = "0" + midia;
+                    fecha = "0" + midia + "." + (mimes + 1) + "." + mianno;
+                } else {
+                    celda.innerHTML = midia;
+                    fecha = "" + midia + "." + (mimes + 1) + "." + mianno;
+                }
             }
-            fecha = "" + midia + "." + (mimes + 1) + "." + mianno;
+
             celda.href = "http://localhost/Planificador/Ventanas/Principal/mes/mes.php?fecha=" + fecha;
-            celda.innerHTML = midia;
+            //celda.innerHTML = midia;
             //console.log(diames);
             //celda.addEventListener('click',function(){seleccion(diaseleccion[i+j-1])},true);
             //Recuperar estado inicial al cambiar de mes:
@@ -173,13 +187,25 @@ function seleccion(fecha) {
 
 function fechaActualMes() {
     mes = document.getElementById("mes");
-    diaMes = new Date();
-    midia = diaMes.getDate();
+    diames = new Date();
+    midia = diames.getDate()
+    mimes = diames.getMonth()
+    mianno = diames.getFullYear()
 
-    mimes = diaMes.getMonth();
+    if (mimes < 9) {
+        if (midia < 10) {
+            fecha = "0" + midia + ".0" + (mimes + 1) + "." + mianno;
+        } else {
+            fecha = "" + midia + ".0" + (mimes + 1) + "." + mianno;
+        }
+    } else {
+        if (midia < 10) {
+            fecha = "0" + midia + "." + (mimes + 1) + "." + mianno;
+        } else {
+            fecha = "" + midia + "." + (mimes + 1) + "." + mianno;
+        }
+    }
 
-    mianno = diaMes.getFullYear();
-    fecha = "" + midia + "." + (mimes + 1) + "." + mianno;
     mes.href = "/Planificador/Ventanas/Principal/mes/mes.php?fecha=" + fecha;
 }
 
@@ -189,6 +215,20 @@ function fechaActualPrin() {
     midia = diaMes.getDate();
     mimes = diaMes.getMonth();
     mianno = diaMes.getFullYear();
-    fecha = "" + midia + "." + (mimes + 1) + "." + mianno;
+    
+    if(mimes<9){
+        if(midia<10){
+            fecha="0"+midia+".0"+(mimes+1)+"."+mianno;
+        }else{
+        fecha=""+midia+".0"+(mimes+1)+"."+mianno;
+        }
+    }else{
+        if(midia<10){
+            fecha="0"+midia+"."+(mimes+1)+"."+mianno;
+        }else{
+        fecha=""+midia+"."+(mimes+1)+"."+mianno;
+        }
+    }
+
     prin.href = "/Planificador/Ventanas/Principal/principal/principal.php?fecha=" + fecha;
 }

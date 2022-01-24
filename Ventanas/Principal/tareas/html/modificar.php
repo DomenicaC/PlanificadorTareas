@@ -13,16 +13,19 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
     <title>Tarea</title>
 
     <!-- <link href="../../../css/princi.css" rel="stylesheet" /> -->
-    <link href="../../../css/general.css" rel="stylesheet" />
+    <link href="../../../../css/general.css" rel="stylesheet" />
+    <script src="../../js/calendario.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="../../../../css/tablas.css">
 
 </head>
 
 <body>
 
     <header class="enc1">
-        <img src="../../../images/iconos/calendar.png" alt="iconoLogo" />
+        <img src="../../../../images/iconos/calendar.png" alt="iconoLogo" />
         <br />
-        <a class="cerrar" href="../../../config/cerrarSesion.php">Cerrar Sesión</a>
+        <a class="cerrar" href="../../../../config/cerrarSesion.php">Cerrar Sesión</a>
+
         <h1>Planificador Empresarial</h1>
 
 
@@ -33,15 +36,14 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
         <br /> <br />
         <nav>
             <ul>
-                <li><a href="../php/principal.php"> Página Principal </a></li>
-                <li><a href="../dia/dia.php"> Día </a> </li>
+                <li><a href="" id=prin onclick="fechaActualPrin()"> Página Principal </a></li>
                 <li><a href="../semana/semana.php"> Semana </a></li>
-                <li><a href="../mes/mes.php"> Mes </a></li>
+                <li><a href="" id=mes onclick="fechaActualMes()"> Mes </a></li>
             </ul>
         </nav>
         <br /> <br />
     </header>
-    <h1>Tarea Seleccionada</h1>
+    <h1>Modificar Tareas</h1>
     <section>
         <form class="formu" id="formulario01" method="POST" action="" onsubmit="return validarCamposObligatorios()">
             <br>
@@ -65,9 +67,49 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
             <span id="mensajeApellidos" class="error"></span>
             <br><br>
 
+            <label for="Horarios">Horario Final Seleccionados</label>
+            <input type="text" id="apellidos" name="apellidos" value="" placeholder="" onkeyup="return validarApellidos(this)" />
+            <span id="mensajeApellidos" class="error"></span>
+            <br><br>
+
             <label for="direccion">Colaboradores</label>
-            <input type="text" id="direccion" name="direccion" value="" placeholder="Ingrese su dirección" />
-            <span id="mensajeDirecion" class="error"></span>
+            <div class="colaboradores">
+            <table style="width:100%" class="responstable">
+              <tr>
+                <th>Seleccionar</th>
+                <th>Codigo col</th>
+                <th>Cedula</th>
+                <th>Nombre</th>
+                <th>Sucursal</th>
+                <th>Cargo</th>
+              </tr>
+              <?php
+              include '../../../../config/conexionBD.php';
+              $sql = "SELECT col_codigo, usu_cedula, usu_nombres, usu_sucursal, col_cargo  FROM usuario u, colaborador c WHERE u.usu_col_codigo = c.col_codigo";
+              $result = $conn->query($sql);
+
+              if ($result->num_rows > 0) {
+
+                while ($row = $result->fetch_assoc()) {
+                  echo "<tr>";
+                  echo "<td><input type='checkbox' /></td>";
+                  echo " <td>" . $row["col_codigo"] . "</td>";
+                  echo " <td>" . $row["usu_cedula"] . "</td>";
+                  echo " <td>" . $row["usu_nombres"] . "</td>";
+                  echo " <td>" . $row["usu_sucursal"] . "</td>";
+                  echo " <td>" . $row['col_cargo'] . "</td>";
+                  echo "</tr>";
+                }
+              } else {
+                echo "<tr>";
+                echo " <td colspan='7'> No colaboradores</td>";
+                echo "</tr>";
+              }
+              $conn->close();
+              ?>
+            </table>
+
+          </div>
             <br><br>
 
             <input class="boton" type="reset" id="volver" name="volver" value="Volver" />

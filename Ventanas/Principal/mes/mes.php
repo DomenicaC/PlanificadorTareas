@@ -154,13 +154,13 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
       <tr>
         <th>Codigo</th>
         <th>Nombre</th>
-        <th>Hora</th>
-        <th>Estado</th>
+        <th>Hora Inicio </th>
+        <th>Hora Fin</th>
       </tr>
       <?php
       include '../../../config/conexionBD.php';
       $fecha = $_GET["fecha"];
-      $sql = "SELECT * FROM tarea WHERE tar_fecha = '$fecha'";
+      $sql = "SELECT * FROM tarea WHERE tar_fecha = '$fecha' ORDER BY tar_horaInicio";
       $result = $conn->query($sql);
 
       if ($result->num_rows > 0) {
@@ -243,7 +243,7 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
               <?php
               include '../../../config/conexionBD.php';
               $fecha = $_GET["fecha"];
-              $sql = "SELECT col_codigo, usu_cedula, usu_nombres, usu_sucursal, col_cargo  FROM usuario u, colaborador c WHERE u.usu_col_codigo = c.col_codigo";
+              $sql = "SELECT col_codigo, usu_cedula, usu_nombres, usu_sucursal, col_cargo  FROM usuario u, colaborador c WHERE u.usu_col_codigo = c.col_codigo ";
               $result = $conn->query($sql);
 
               if ($result->num_rows > 0) {
