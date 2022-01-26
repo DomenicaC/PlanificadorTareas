@@ -28,9 +28,17 @@
         //"usu_fecha_modificacion = '$fecha' " .
         "WHERE tar_codigo = $codigo";
     if ($conn->query($sql) === TRUE) {
-        echo "Se ha actualizado la tarea correctamemte!!!<br>";
+        //echo "Se ha actualizado la tarea correctamemte!!!<br>";
+        print '<script language="JavaScript">';
+        print 'alert("Los datos han sido modificados correctamente");';
+        print "document.location='../html/modificar.php?codigo=" . $codigo . "'";
+        print '</script>';
     } else {
-        echo "Error: " . $sql . "<br>" . mysqli_error($conn) . "<br>";
+        //echo "Error: " . $sql . "<br>" . mysqli_error($conn) . "<br>";
+        print '<script language="JavaScript">';
+        print 'alert("No se ha podido modificar los datos");';
+        print "document.location='../html/modificar.php?codigo=" . $codigo . "'";
+        print '</script>';
     }
     echo "<a href='../../vista/usuario/index.php'>Regresar</a>";
     $conn->close();

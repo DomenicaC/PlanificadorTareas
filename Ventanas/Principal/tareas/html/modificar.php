@@ -65,7 +65,7 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
           <input type="hidden" id="codigo" name="codigo" value="<?php echo $codigo ?>" />
 
           <label for="nombre">Nombre tarea (*)</label>
-          <input type="text" id="nombre" name="nombre" value="<?php echo $row["tar_nombre"]; ?>" required placeholder="Ingrese la nombre" />
+          <input type="text" id="nombre" name="nombre" value="<?php echo $row["tar_nombre"]; ?>" required placeholder="Ingrese el nombre" />
           <br>
 
           <label for="descripcion">Descripcion (*)</label>
