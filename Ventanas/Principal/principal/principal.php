@@ -127,7 +127,7 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
                 while ($row = $result->fetch_assoc()) {
                     echo "<tr>";
 
-                    echo "<td><input type='checkbox' id = 'c'"  ?> . <?php if ($row['tar_estado'] == 1) echo 'checked'; ?> . "onclick = 'estado()'/></td>";
+                    echo "<td><input type='checkbox' onChange='seleccion(". $row["tar_codigo"] .")' id =  '". $row["tar_codigo"] ."'"  ?> . <?php if ($row['tar_estado'] == 1) echo 'checked'; ?> . "onclick = 'estado()'/></td>";
             <?php
                     echo " <td id = 'cod'>" . $row["tar_codigo"] . "</td>";
                     echo " <td>" . $row['tar_nombre'] . "</td>";

@@ -234,7 +234,6 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
             <table style="width:100%" class="responstable">
               <tr>
                 <th>Seleccionar</th>
-                <th>Codigo col</th>
                 <th>Cedula</th>
                 <th>Nombre</th>
                 <th>Sucursal</th>
@@ -251,7 +250,6 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
                 while ($row = $result->fetch_assoc()) {
                   echo "<tr>";
                   echo "<td><input type='checkbox' /></td>";
-                  echo " <td>" . $row["col_codigo"] . "</td>";
                   echo " <td>" . $row["usu_cedula"] . "</td>";
                   echo " <td>" . $row["usu_nombres"] . "</td>";
                   echo " <td>" . $row["usu_sucursal"] . "</td>";

@@ -3,24 +3,25 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Modificar datos de persona</title>
+    <title>Modificar estado de tarea</title>
 </head>
 
 <body>
     <?php
     //incluir conexión a la base de datos
-    include '../../../config/conexionBD.php';
-    $codigo = $_POST["codigo"];
+    include '../../../../config/conexionBD.php';
+    $codigo = $_GET["codigo"];
     $estado = 1;
 
 
     $sql = "UPDATE tarea " .
-        "SET tar_codigo = '$codigo', " .
-        "tar_estado = '$estado', " .
+        "SET tar_estado = $estado " .
         "WHERE tar_codigo = $codigo ";
 
     if ($conn->query($sql) === TRUE) {
-        echo "Se ha actualizado el estado correctamemte!!!<br>";
+        //echo "Se ha actualizado el estado correctamemte!!!<br>";
+        $fechaD = date('d.m.Y');
+        header('Location: ../principal.php?fecha=' . $fechaD);
     } else {
         echo "Error: " . $sql . "<br>" . mysqli_error($conn) . "<br>";
     }

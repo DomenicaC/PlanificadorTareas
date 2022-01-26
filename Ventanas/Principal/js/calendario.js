@@ -215,20 +215,30 @@ function fechaActualPrin() {
     midia = diaMes.getDate();
     mimes = diaMes.getMonth();
     mianno = diaMes.getFullYear();
-    
-    if(mimes<9){
-        if(midia<10){
-            fecha="0"+midia+".0"+(mimes+1)+"."+mianno;
-        }else{
-        fecha=""+midia+".0"+(mimes+1)+"."+mianno;
+
+    if (mimes < 9) {
+        if (midia < 10) {
+            fecha = "0" + midia + ".0" + (mimes + 1) + "." + mianno;
+        } else {
+            fecha = "" + midia + ".0" + (mimes + 1) + "." + mianno;
         }
-    }else{
-        if(midia<10){
-            fecha="0"+midia+"."+(mimes+1)+"."+mianno;
-        }else{
-        fecha=""+midia+"."+(mimes+1)+"."+mianno;
+    } else {
+        if (midia < 10) {
+            fecha = "0" + midia + "." + (mimes + 1) + "." + mianno;
+        } else {
+            fecha = "" + midia + "." + (mimes + 1) + "." + mianno;
         }
     }
 
     prin.href = "/Planificador/Ventanas/Principal/principal/principal.php?fecha=" + fecha;
+}
+
+function seleccion(codigo) {
+
+    if (document.getElementById(codigo).checked == true) {
+        location.href = '../principal/php/actualizarEstado.php?codigo=' + codigo;
+    } else {
+        console.log('no chequeado');
+    }
+
 }
