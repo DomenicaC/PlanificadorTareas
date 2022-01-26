@@ -14,10 +14,11 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
 
   <!-- <link href="../../../css/princi.css" rel="stylesheet" /> -->
   <link href="../../../../css/general.css" rel="stylesheet" />
-  <script src="../../js/calendario.js" type="text/javascript"></script>
+
   <link rel="stylesheet" href="../../../../css/tablas.css">
-  <link rel="stylesheet" href="../../../css/mes.css">
-  <link rel="stylesheet" href="../../../css/general.css">
+  <link rel="stylesheet" href="../../../../css/mes.css">
+    <script src="../../js/calendario.js" type="text/javascript"></script>
+
 
 </head>
 
@@ -39,103 +40,67 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
     <nav>
       <ul>
         <li><a href="" id=prin onclick="fechaActualPrin()"> Página Principal </a></li>
-        <li><a href="../semana/semana.php"> Semana </a></li>
+        <li><a href="../../semana/semana.php"> Semana </a></li>
         <li><a href="" id=mes onclick="fechaActualMes()"> Mes </a></li>
       </ul>
     </nav>
     <br /> <br />
   </header>
 
+  <section>
 
-  <div id="miModal" class="modal">
-    <div class="modal-contenido">
-      <h1>Modificar Tarea</h1>
-      <section>
-        <h1></h1>
-        <form id="formulario01" method="POST" action="php/crear_tarea.php">
-          <div class="seleccionHoras">
-            <div class="horaInicial">
-              <h2>Hora Inicial</h2>
-              <section id="contReloj">
-                <p id="pHoras"></p>
-                <p>:</p>
-                <p id="pMinutos"></p>
-              </section>
-              <!-- <section id="contSaludo"></section> -->
-              <input type="time" id="horaInicio" name="horaInicio" min="07:00" max="20:00" onchange="ActualizarHora(this.value)">
-            </div>
+    <?php
+    $codigo = $_GET["codigo"];
+    $sql = "SELECT * FROM tarea where tar_codigo=$codigo";
 
-            <div class="horaFinal">
-              <h2>Hora Final</h2>
-              <section id="contReloj">
-                <p id="pHorasF"></p>
-                <p>:</p>
-                <p id="pMinutosF"></p>
-              </section>
-              <!-- <section id="contSaludoF"></section> -->
-              <input type="time" id="horaFinal" name="horaFinal" min="07:00" max="20:00" onchange="ActualizarHoraFinal(this.value)">
-            </div>
-          </div>
+    include '../../../../config/conexionBD.php';
+    $result = $conn->query($sql);
 
-          <div class="seleccionInformacion">
-            <h2>Seleccion de Información</h2>
-            <div class="informacion">
-              <label for="">Nombre Tarea:</label>
-              <input type="text" id="nombre" name="nombre" value="" placeholder="Ingrese el título de la tarea..." required> <br>
+    if ($result->num_rows > 0) {
 
-              <label for="">Descripción Tarea:</label><Br />
-              <textarea id="descripcion" name="descripcion" rows="10" cols="10" placeholder="Ingrese la descripcion de la tarea"></textarea>
+      while ($row = $result->fetch_assoc()) {
+    ?>
+        <form id="formulario01" method="POST" action="../php/modificar.php">
 
-              <label for="">Fecha Tarea:</label>
-              <input type="date" id="fecha" name="fecha"> <br>
-            </div>
+          <input type="hidden" id="codigo" name="codigo" value="<?php echo $codigo ?>" />
 
-            <div class="colaboradores">
-              <label for="">Añadir Colaboradores</label>
-              <table style="width:100%" class="responstable">
-                <tr>
-                  <th>Seleccionar</th>
-                  <th>Cedula</th>
-                  <th>Nombre</th>
-                  <th>Sucursal</th>
-                  <th>Cargo</th>
-                </tr>
-                <?php
-                include '../../../../config/conexionBD.php';
-                //$fecha = $_GET["fecha"];
-                $sql = "SELECT col_codigo, usu_cedula, usu_nombres, usu_sucursal, col_cargo  FROM usuario u, colaborador c WHERE u.usu_col_codigo = c.col_codigo ";
-                $result = $conn->query($sql);
+          <label for="nombre">Nombre tarea (*)</label>
+          <input type="text" id="nombre" name="nombre" value="<?php echo $row["tar_nombre"]; ?>" required placeholder="Ingrese la nombre" />
+          <br>
 
-                if ($result->num_rows > 0) {
+          <label for="descripcion">Descripcion (*)</label>
+          <input type="text" id="descripcion" name="descripcion" value="<?php echo $row["tar_descripcion"]; ?>" required placeholder="Ingrese la descripcion" />
+          <br>
 
-                  while ($row = $result->fetch_assoc()) {
-                    echo "<tr>";
-                    echo "<td><input type='checkbox' /></td>";
-                    echo " <td>" . $row["usu_cedula"] . "</td>";
-                    echo " <td>" . $row["usu_nombres"] . "</td>";
-                    echo " <td>" . $row["usu_sucursal"] . "</td>";
-                    echo " <td>" . $row['col_cargo'] . "</td>";
-                    echo "</tr>";
-                  }
-                } else {
-                  echo "<tr>";
-                  echo " <td colspan='7'> No colaboradores</td>";
-                  echo "</tr>";
-                }
-                $conn->close();
-                ?>
-              </table>
+          <label for="horaIni">Hora inicio (*)</label>
+          <input type="text" id="horaIni" name="horaIni" value="<?php echo $row["tar_horaInicio"]; ?>" required placeholder="Ingrese la hora de inicio" />
+          <br>
 
-            </div>
-          </div>
+          <label for="horaFin">Hora fin (*)</label>
+          <input type="text" id="horaFin" name="horaFin" value="<?php echo $row["tar_horaFin"]; ?>" required placeholder="Ingrese la fin" />
+          <br>
 
-          <input type="submit" class="boton" id="crear" name="crear" value="Aceptar" />
+          <label for="fecha">fecha (*)</label>
+          <input type="text" id="fecha" name="fecha" value="<?php echo $row["tar_fecha"]; ?>" required placeholder="Ingrese la fecha" />
+          <br>
+
+
+          <input type="submit" id="modificar" name="modificar" value="Modificar" />
+          <input type="reset" id="cancelar" name="cancelar" value="Cancelar" />
 
         </form>
-    </div>
+    <?php
+      }
+    } else {
+      echo "<p>Ha ocurrido un error inesperado !</p>";
+      echo "<p>" . mysqli_error($conn) . "</p>";
+    }
+    $conn->close();
+    ?>
 
-    </section>
-  </div>
+  </section>
+
+
 
   <footer class=" pie">
     <br />PLANIFICADORA EMPRESARIAL &#8226;Byron Alejandro Godoy Tenesaca &nbsp; 28201 &#8226;
