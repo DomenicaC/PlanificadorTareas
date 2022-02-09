@@ -12,11 +12,10 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
   <meta charset="UTF-8">
   <title>Tarea</title>
 
-  <link href="../../../../css/general.css" rel="stylesheet" />
   <link rel="stylesheet" href="../../../../css/form.scss">
-
-  <link rel="stylesheet" href="../../../../css/tablas.css">
   <link rel="stylesheet" href="../../../../css/mes.css">
+  <link href="../../../../css/general.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../../../../css/tablas.css">
   <script src="../../js/calendario.js" type="text/javascript"></script>
   <script src="../../js/formulario.js" type="text/javascript"></script>
 
@@ -24,7 +23,7 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
 
 <body>
   <header class="enc1">
-    <img src="../../../../images/iconos/calendar.png" alt="iconoLogo" />
+    <img src="../../../../images/logo/logo1.png" alt="iconoLogo" />
     <br />
     <a class="cerrar" href="../../../../config/cerrarSesion.php">Cerrar Sesión</a>
 
@@ -84,6 +83,42 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
           <label for="fecha">fecha (*)</label>
           <input type="text" class="email" value="<?php echo $row["tar_fecha"]; ?>" required placeholder="Fecha de la tarea" />
           <br />
+
+            <label for="">Añadir Colaboradores</label>
+            <table class="responstable">
+              <tr>
+                <th>Seleccionar</th>
+                <th>Cedula</th>
+                <th>Nombre</th>
+                <th>Sucursal</th>
+                <th>Cargo</th>
+              </tr>
+              <?php
+              include '../../../../config/conexionBD.php';
+              //$fecha = $_GET["fecha"];
+              $sql = "SELECT col_codigo, usu_cedula, usu_nombres, usu_sucursal, col_cargo  FROM usuario u, colaborador c WHERE u.usu_col_codigo = c.col_codigo ";
+              $result = $conn->query($sql);
+
+              if ($result->num_rows > 0) {
+
+                while ($row = $result->fetch_assoc()) {
+                  echo "<tr>";
+                  echo "<td><input type='checkbox' id='check'/></td>";
+                  echo " <td>" . $row["usu_cedula"] . "</td>";
+                  echo " <td>" . $row["usu_nombres"] . "</td>";
+                  echo " <td>" . $row["usu_sucursal"] . "</td>";
+                  echo " <td>" . $row['col_cargo'] . "</td>";
+                  echo "</tr>";
+                }
+              } else {
+                echo "<tr>";
+                echo " <td colspan='7'> No colaboradores</td>";
+                echo "</tr>";
+              }
+
+              ?>
+            </table>
+
 
           <button type="submit" class="register">
             <span>Modificar Tarea</span>
