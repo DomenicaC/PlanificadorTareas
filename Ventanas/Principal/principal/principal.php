@@ -14,6 +14,7 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
 
     <link href="../../../css/princi.css" rel="stylesheet" />
     <link href="../../../css/general.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../../css/mes.css">
     <link rel="stylesheet" href="../../../css/tablas.css" type="text/css">
     <script src="../js/calendario.js" type="text/javascript"></script>
     <script src="../js/reloj.js" type="text/javascript"></script>
@@ -24,7 +25,7 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
 <body>
 
     <header class="enc1">
-        <img src="../../../images/logo/logoOfi.png" alt="iconoLogo" />
+        <img src="../../../images/logo/logo1.png" alt="iconoLogo" />
         <br />
         <a class="cerrar" href="../../../config/cerrarSesion.php">Cerrar Sesión</a>
         <h1>Planificador Empresarial</h1>
@@ -106,6 +107,107 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
 
     </section>
 
+    <section>
+        <section class="tareas">
+            <div>
+                <a href="#miModal"><img src="../../../images/iconos/mas.png" style="width: 2rem;" /> <span>Añadir tarea</span></a>
+            </div>
+        </section>
+
+        <!-- Clase modal donde se escoje la hora y fecha y demas informacion de las tareas -->
+        <div id="miModal" class="modal">
+            <div class="modal-contenido">
+                <a href="#">X Cerrar</a>
+
+                <h1>Ingreso de nueva tarea</h1>
+                <form id="formulario01" method="POST" action="php/crear_tarea.php">
+                    <div class="seleccionHoras">
+                        <div class="horaInicial">
+                            <h2>Seleccione la hora Inicial</h2>
+                            <section id="contReloj">
+                                <p id="pHoras"></p>
+                                <p>:</p>
+                                <p id="pMinutos"></p>
+                            </section>
+                            <!-- <section id="contSaludo"></section> -->
+                            <input type="time" id="horaInicio" name="horaInicio" min="07:00" max="20:00" onchange="ActualizarHora(this.value)">
+                        </div>
+
+                        <div class="horaFinal">
+                            <h2>Seleccione la hora Final</h2>
+                            <section id="contReloj">
+                                <p id="pHorasF"></p>
+                                <p>:</p>
+                                <p id="pMinutosF"></p>
+                            </section>
+                            <!-- <section id="contSaludoF"></section> -->
+                            <input type="time" id="horaFinal" name="horaFinal" min="07:00" max="20:00" onchange="ActualizarHoraFinal(this.value)">
+                        </div>
+                    </div>
+
+                    <div class="seleccionInformacion">
+                        <h2>Seleccion de Información</h2>
+                        <div class="informacion">
+                            <label for="">Nombre Tarea:</label>
+                            <input type="text" id="nombre" name="nombre" value="" placeholder="Ingrese el título de la tarea..." required> <br>
+
+                            <label for="">Descripción Tarea:</label><Br />
+                            <textarea id="descripcion" name="descripcion" rows="10" cols="10" placeholder="Ingrese la descripcion de la tarea"></textarea>
+
+                            <label for="">Fecha Tarea:</label>
+                            <input type="date" id="fecha" name="fecha"> <br>
+                        </div>
+
+                        <div class="colaboradores">
+                            <label for="">Añadir Colaboradores</label>
+                            <table style="width:100%" class="responstable">
+                                <tr>
+                                    <th>Seleccionar</th>
+                                    <th>Cedula</th>
+                                    <th>Nombre</th>
+                                    <th>Sucursal</th>
+                                    <th>Cargo</th>
+                                </tr>
+                                <?php
+                                include '../../../config/conexionBD.php';
+                                $fecha = $_GET["fecha"];
+                                $sql = "SELECT col_codigo, usu_cedula, usu_nombres, usu_sucursal, col_cargo  FROM usuario u, colaborador c WHERE u.usu_col_codigo = c.col_codigo ";
+                                $result = $conn->query($sql);
+
+                                if ($result->num_rows > 0) {
+
+                                    while ($row = $result->fetch_assoc()) {
+                                        echo "<tr>";
+                                        echo "<td><input type='checkbox' /></td>";
+                                        echo " <td>" . $row["usu_cedula"] . "</td>";
+                                        echo " <td>" . $row["usu_nombres"] . "</td>";
+                                        echo " <td>" . $row["usu_sucursal"] . "</td>";
+                                        echo " <td>" . $row['col_cargo'] . "</td>";
+                                        echo "</tr>";
+                                    }
+                                } else {
+                                    echo "<tr>";
+                                    echo " <td colspan='7'> No colaboradores</td>";
+                                    echo "</tr>";
+                                }
+                                $conn->close();
+                                ?>
+                            </table>
+
+                        </div>
+                    </div>
+
+                    <input type="submit" class="botonAceptar" id="crear" name="crear" value="Aceptar" />
+
+                </form>
+            </div>
+
+        </div>
+
+        <!-- fin de la clase modal -->
+
+    </section>
+
     <section class=" dos">
         <h2>Tareas del día</h2>
         <table style="width:100%" class="responstable">
@@ -127,14 +229,14 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
                 while ($row = $result->fetch_assoc()) {
                     echo "<tr>";
 
-                    echo "<td><input type='checkbox' onChange='seleccion(". $row["tar_codigo"] .")' id =  '". $row["tar_codigo"] ."'"  ?> . <?php if ($row['tar_estado'] == 1) echo 'checked'; ?> . "onclick = 'estado()'/></td>";
+                    echo "<td><input type='checkbox' onChange='seleccion(" . $row["tar_codigo"] . ")' id =  '" . $row["tar_codigo"] . "'"  ?> . <?php if ($row['tar_estado'] == 1) echo 'checked'; ?> . "onclick = 'estado()'/></td>";
             <?php
                     echo " <td id = 'cod'>" . $row["tar_codigo"] . "</td>";
                     echo " <td>" . $row['tar_nombre'] . "</td>";
                     echo " <td>" . $row['tar_horaInicio'] . "</td>";
                     echo " <td>" . $row['tar_horaFin'] . "</td>";
                     echo " <td> <a href='../tareas/php/eliminar.php?codigo=" . $row['tar_codigo'] . "'>Eliminar</a> </td>";
-                    echo " <td> <a href='../tareas/html/modificar.php?codigo=" . $row['tar_codigo'] . "'>Modificar</a> </td>";
+                    echo " <td> <a onclick='fechaActualPrin()' href='../tareas/html/modificar.php?codigo=" . $row['tar_codigo'] . "'>Modificar</a> </td>";
                     echo "</tr>";
                 }
             } else {

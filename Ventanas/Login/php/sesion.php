@@ -13,15 +13,17 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     $_SESSION['isLogged'] = TRUE;
 
-    $fecha_actual = new DateTime();
-    $cadena_fecha_actual = $fecha_actual->format("d.m.Y");
+    // $fecha_actual = new DateTime();
+    // $cadena_fecha_actual = $fecha_actual->format("d.m.Y");
+    date_default_timezone_set("America/Guayaquil");
+    $cadena_fecha_actual = date('d.m.Y');
     header("Location: ../../Principal/principal/principal.php?fecha=" . $cadena_fecha_actual);
 
     echo "<p>ingreso!! :)</p>";
 } else {
     //header("Location: ../vista/login.html");
-    
-    
+
+
     print '<script language="JavaScript">';
     print 'alert("Usuario o contraseña incorrectos");';
     print 'document.location="../html/login.html"';

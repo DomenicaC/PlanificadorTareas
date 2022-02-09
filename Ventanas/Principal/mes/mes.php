@@ -24,7 +24,7 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
 
 <body>
   <header class="enc1">
-    <img src="../../../images/iconos/calendar.png" alt="iconoLogo" />
+    <img src="../../../images/logo/logo1.png" alt="iconoLogo" />
     <br />
     <a class="cerrar" href="../../../config/cerrarSesion.php">Cerrar Sesión</a>
     <h1>Planificador Empresarial</h1>
@@ -170,7 +170,7 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
           echo " <td>" . $row["tar_codigo"] . "</td>";
           echo " <td>" . $row['tar_nombre'] . "</td>";
           echo " <td>" . $row['tar_horaInicio'] . "</td>";
-          echo " <td>" . $row['tar_horaInicio'] . "</td>";
+          echo " <td>" . $row['tar_horaFin'] . "</td>";
           echo " <td> <a href='../tareas/php/eliminar.php?codigo=" . $row['tar_codigo'] . "'>Eliminar</a> </td>";
           echo " <td> <a href='../tareas/html/modificar.php?codigo=" . $row['tar_codigo'] . "'>Modificar</a> </td>";
           echo "</tr>";

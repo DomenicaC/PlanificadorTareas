@@ -3,6 +3,7 @@ meses = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto
 lasemana = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"]
 diassemana = ["lun", "mar", "mié", "jue", "vie", "sáb", "dom"];
 diaseleccion = [];
+
 //Tras cargarse la página ...
 window.onload = function () {
     //fecha actual
@@ -186,6 +187,7 @@ function seleccion(fecha) {
 }
 
 function fechaActualMes() {
+    //date_default_timezone_set("America/Guayaquil");
     mes = document.getElementById("mes");
     diames = new Date();
     midia = diames.getDate()
@@ -210,6 +212,7 @@ function fechaActualMes() {
 }
 
 function fechaActualPrin() {
+    //date_default_timezone_set("America/Guayaquil");
     prin = document.getElementById("prin");
     diaMes = new Date();
     midia = diaMes.getDate();
@@ -238,6 +241,7 @@ function seleccion(codigo) {
     if (document.getElementById(codigo).checked == true) {
         location.href = '../principal/php/actualizarEstado.php?codigo=' + codigo;
     } else {
+        location.href = '../principal/php/quitarCheck.php?codigo=' + codigo;
         console.log('no chequeado');
     }
 

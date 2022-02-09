@@ -25,20 +25,26 @@
     $fecha = isset($_POST["fecha"]) ? mb_strtoupper(trim($_POST["fecha"]), 'UTF-8') : null;
     $timestamp = strtotime($fecha);
     $newDate = date("d.m.Y", $timestamp);
+    $fechaActual = date("d.m.Y");
     $estado = 0;
 
     //INSERT INTO tarea VALUES (10, 'as', 'as', '16:00', '15:00',1, '1');
     $sql = "INSERT INTO tarea VALUES (0, '$nombre', '$descripcion', '$horaInicio', '$horaFinal', '$newDate', $estado, '$cedUsuario')";
-    echo($sql);
+    echo ($sql);
 
     if ($conn->query($sql) === TRUE) {
-        echo "<p>Se ha insertado la tarea correctamemte!!!</p>";
+        //echo "<p>Se ha insertado la tarea correctamemte!!!</p>";
+        print '<script language="JavaScript">';
+        print 'alert("Los datos han sido agregados correctamente");';
+        print "document.location='http://localhost/Planificador/Ventanas/Principal/principal/principal.php?fecha=" . $fechaActual . "'";
+        print '</script>';
     } else {
-        if ($conn->errno == 1062) {
-            echo "<p class='error'>La tarea con el codigo $codigo ya está registrada en el sistema </p>";
-        } else {
-            echo "<p class='error'>Error: " . mysqli_error($conn) . "</p>";
-        }
+
+        //echo "<p class='error'>Error: " . mysqli_error($conn) . "</p>";
+        print '<script language="JavaScript">';
+        print 'alert("Los datos no han podido ser agregados correctamente");';
+        print "document.location='http://localhost/Planificador/Ventanas/Principal/principal/principal.php?fecha=" . $fechaActual . "'";
+        print '</script>';
     }
 
     //cerrar la base de datos
