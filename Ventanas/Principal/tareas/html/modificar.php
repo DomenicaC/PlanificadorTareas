@@ -12,18 +12,17 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
   <meta charset="UTF-8">
   <title>Tarea</title>
 
-  <!-- <link href="../../../css/princi.css" rel="stylesheet" /> -->
   <link href="../../../../css/general.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../../../../css/form.scss">
 
   <link rel="stylesheet" href="../../../../css/tablas.css">
   <link rel="stylesheet" href="../../../../css/mes.css">
-    <script src="../../js/calendario.js" type="text/javascript"></script>
-
+  <script src="../../js/calendario.js" type="text/javascript"></script>
+  <script src="../../js/formulario.js" type="text/javascript"></script>
 
 </head>
 
 <body>
-
   <header class="enc1">
     <img src="../../../../images/iconos/calendar.png" alt="iconoLogo" />
     <br />
@@ -47,7 +46,9 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
     <br /> <br />
   </header>
 
-  <section>
+  <div class="container">
+
+    <h2>Modificar Tarea</h2>
 
     <?php
     $codigo = $_GET["codigo"];
@@ -60,35 +61,36 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
 
       while ($row = $result->fetch_assoc()) {
     ?>
-        <form id="formulario01" method="POST" action="../php/modificar.php">
 
+        <form id="formulario01" method="POST" action="../../php/modificar.php">
           <input type="hidden" id="codigo" name="codigo" value="<?php echo $codigo ?>" />
 
           <label for="nombre">Nombre tarea (*)</label>
-          <input type="text" id="nombre" name="nombre" value="<?php echo $row["tar_nombre"]; ?>" required placeholder="Ingrese el nombre" />
-          <br>
+          <input type="text" class="email" value="<?php echo $row["tar_nombre"]; ?>" required placeholder="Nombre de la tarea" />
+          <br />
 
           <label for="descripcion">Descripcion (*)</label>
-          <input type="text" id="descripcion" name="descripcion" value="<?php echo $row["tar_descripcion"]; ?>" required placeholder="Ingrese la descripcion" />
-          <br>
+          <textarea rows="10" cols="60" class="email" required placeholder="Descripcion de la tarea"> <?php echo $row["tar_descripcion"]; ?> </textarea>
+          <br />
 
           <label for="horaIni">Hora inicio (*)</label>
-          <input type="text" id="horaIni" name="horaIni" value="<?php echo $row["tar_horaInicio"]; ?>" required placeholder="Ingrese la hora de inicio" />
-          <br>
+          <input type="text" class="email" value="<?php echo $row["tar_horaInicio"]; ?>" required placeholder="Hora inicial de la tarea" />
+          <br />
 
           <label for="horaFin">Hora fin (*)</label>
-          <input type="text" id="horaFin" name="horaFin" value="<?php echo $row["tar_horaFin"]; ?>" required placeholder="Ingrese la fin" />
-          <br>
+          <input type="text" class="email" value="<?php echo $row["tar_horaFin"]; ?>" required placeholder="Hora final de la tarea" />
+          <br />
 
           <label for="fecha">fecha (*)</label>
-          <input type="text" id="fecha" name="fecha" value="<?php echo $row["tar_fecha"]; ?>" required placeholder="Ingrese la fecha" />
-          <br>
+          <input type="text" class="email" value="<?php echo $row["tar_fecha"]; ?>" required placeholder="Fecha de la tarea" />
+          <br />
 
-
-          <input type="submit" id="modificar" name="modificar" value="Modificar" />
-          <input type="reset" id="cancelar" name="cancelar" value="Cancelar" />
+          <button type="submit" class="register">
+            <span>Modificar Tarea</span>
+          </button>
 
         </form>
+
     <?php
       }
     } else {
@@ -98,9 +100,7 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
     $conn->close();
     ?>
 
-  </section>
-
-
+  </div>
 
   <footer class=" pie">
     <br />PLANIFICADORA EMPRESARIAL &#8226;Byron Alejandro Godoy Tenesaca &nbsp; 28201 &#8226;
