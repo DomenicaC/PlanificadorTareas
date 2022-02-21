@@ -15,6 +15,7 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
   <link rel="stylesheet" href="../../../css/mes.css">
   <link rel="stylesheet" href="../../../css/general.css">
   <link rel="stylesheet" href="../../../css/tablas.css">
+  <link rel="stylesheet" href="../../../css/form.scss">
   </title>
   <link rel="stylesheet" href="../../../css/tablas.css" type="text/css">
   <script src="../js/calendario.js" type="text/javascript"></script>
@@ -201,7 +202,7 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
               <p id="pMinutos"></p>
             </section>
             <!-- <section id="contSaludo"></section> -->
-            <input type="time" id="horaInicio" name="horaInicio" min="07:00" max="20:00" onchange="ActualizarHora(this.value)">
+            <input class="input" type="time" id="horaInicio" name="horaInicio" min="07:00" max="20:00" onchange="ActualizarHora(this.value)">
           </div>
 
           <div class="horaFinal">
@@ -212,26 +213,26 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
               <p id="pMinutosF"></p>
             </section>
             <!-- <section id="contSaludoF"></section> -->
-            <input type="time" id="horaFinal" name="horaFinal" min="07:00" max="20:00" onchange="ActualizarHoraFinal(this.value)">
+            <input type="time" class="input" id="horaFinal" name="horaFinal" min="07:00" max="20:00" onchange="ActualizarHoraFinal(this.value)">
           </div>
         </div>
 
         <div class="seleccionInformacion">
           <h2>Seleccion de Información</h2>
           <div class="informacion">
-            <label for="">Nombre Tarea:</label>
-            <input type="text" id="nombre" name="nombre" value="" placeholder="Ingrese el título de la tarea..." required> <br>
+            <label for="" class="label">Nombre Tarea:</label>
+            <input type="text" class="input" id="nombre" name="nombre" value="" placeholder="Ingrese el título de la tarea..." required> <br>
 
-            <label for="">Descripción Tarea:</label><Br />
-            <textarea id="descripcion" name="descripcion" rows="10" cols="10" placeholder="Ingrese la descripcion de la tarea"></textarea>
+            <label for="" class="label">Descripción Tarea:</label><Br />
+            <textarea id="descripcion" class="textarea" name="descripcion" rows="10" cols="10" placeholder="Ingrese la descripcion de la tarea"></textarea>
 
-            <label for="">Fecha Tarea:</label>
-            <input type="date" id="fecha" name="fecha"> <br>
+            <label for="" class="label">Fecha Tarea:</label>
+            <input type="date" class="input" id="fecha" name="fecha"> <br>
           </div>
 
           <div class="colaboradores">
-            <label for="">Añadir Colaboradores</label>
-            <table style="width:100%" class="responstable">
+            <label for="" class="label">Añadir Colaboradores</label>
+            <table style="width:110%" class="responstable">
               <tr>
                 <th>Seleccionar</th>
                 <th>Cedula</th>
@@ -249,7 +250,7 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
 
                 while ($row = $result->fetch_assoc()) {
                   echo "<tr>";
-                  echo "<td><input type='checkbox' /></td>";
+                  echo "<td><input type='checkbox' id='check'/></td>";
                   echo " <td>" . $row["usu_cedula"] . "</td>";
                   echo " <td>" . $row["usu_nombres"] . "</td>";
                   echo " <td>" . $row["usu_sucursal"] . "</td>";
@@ -268,7 +269,7 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
           </div>
         </div>
 
-        <input type="submit" class="boton" id="crear" name="crear" value="Aceptar" />
+        <input type="submit" class="botonAceptar" id="crear" name="crear" value="Aceptar" />
 
       </form>
     </div>
