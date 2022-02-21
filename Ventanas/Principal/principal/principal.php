@@ -10,12 +10,16 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pagina Principal</title>
 
-    <link href="../../../css/princi.css" rel="stylesheet" />
-    <link href="../../../css/general.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../../css/form.scss">
+    <link rel="stylesheet" href="../../../css/princi.css" />
     <link rel="stylesheet" href="../../../css/mes.css">
     <link rel="stylesheet" href="../../../css/tablas.css" type="text/css">
+    <link rel="stylesheet" href="../../../css/general.css" />
+
     <script src="../js/calendario.js" type="text/javascript"></script>
     <script src="../js/reloj.js" type="text/javascript"></script>
     <script src="../js/controlEstadoTar.js" type="text/javascript"></script>
@@ -43,11 +47,10 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
                 <li><a href="" id=mes onclick="fechaActualMes()"> Mes </a></li>
             </ul>
         </nav>
-        <br /> <br />
+
     </header>
 
     <section>
-        <h2>Seccion colaboradores</h2>
         <h1>Colaboradores</h1>
         <div class="colabs">
             <div class="at"> <a href=""><img src="../../../images/iconos/ac.png" style="width: 2rem;" />Atención Cliente</a> </div>
@@ -57,8 +60,15 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
         </div>
     </section>
     </br>
-    <section class="dos">
-        <h2>Seccion de dos columnas</h2>
+    <section class="tareas">
+        <div>
+            <a href="#miModal"><img src="../../../images/iconos/mas.png" style="width: 2rem;" /> <span>Añadir tarea</span></a>
+        </div>
+    </section>
+
+    <section class="uno">
+        
+        <h2>Control de tareas</h2>
         <table style="width:100%" class="responstable">
 
             <tr>
@@ -108,11 +118,6 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
     </section>
 
     <section>
-        <section class="tareas">
-            <div>
-                <a href="#miModal"><img src="../../../images/iconos/mas.png" style="width: 2rem;" /> <span>Añadir tarea</span></a>
-            </div>
-        </section>
 
         <!-- Clase modal donde se escoje la hora y fecha y demas informacion de las tareas -->
         <div id="miModal" class="modal">
@@ -120,7 +125,7 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
                 <a href="#">X Cerrar</a>
 
                 <h1>Ingreso de nueva tarea</h1>
-                <form id="formulario01" method="POST" action="php/crear_tarea.php">
+                <form id="formulario01" method="POST" action="../tareas/php/crear_tarea.php">
                     <div class="seleccionHoras">
                         <div class="horaInicial">
                             <h2>Seleccione la hora Inicial</h2>
@@ -130,7 +135,7 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
                                 <p id="pMinutos"></p>
                             </section>
                             <!-- <section id="contSaludo"></section> -->
-                            <input type="time" id="horaInicio" name="horaInicio" min="07:00" max="20:00" onchange="ActualizarHora(this.value)">
+                            <input class="input" type="time" id="horaInicio" name="horaInicio" min="07:00" max="20:00" onchange="ActualizarHora(this.value)">
                         </div>
 
                         <div class="horaFinal">
@@ -141,26 +146,26 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
                                 <p id="pMinutosF"></p>
                             </section>
                             <!-- <section id="contSaludoF"></section> -->
-                            <input type="time" id="horaFinal" name="horaFinal" min="07:00" max="20:00" onchange="ActualizarHoraFinal(this.value)">
+                            <input type="time" class="input" id="horaFinal" name="horaFinal" min="07:00" max="20:00" onchange="ActualizarHoraFinal(this.value)">
                         </div>
                     </div>
 
                     <div class="seleccionInformacion">
                         <h2>Seleccion de Información</h2>
                         <div class="informacion">
-                            <label for="">Nombre Tarea:</label>
-                            <input type="text" id="nombre" name="nombre" value="" placeholder="Ingrese el título de la tarea..." required> <br>
+                            <label for="" class="label">Nombre Tarea:</label>
+                            <input type="text" class="input" id="nombre" name="nombre" value="" placeholder="Ingrese el título de la tarea..." required> <br>
 
-                            <label for="">Descripción Tarea:</label><Br />
-                            <textarea id="descripcion" name="descripcion" rows="10" cols="10" placeholder="Ingrese la descripcion de la tarea"></textarea>
+                            <label for="" class="label">Descripción Tarea:</label><Br />
+                            <textarea id="descripcion" class="textarea" name="descripcion" rows="10" cols="10" placeholder="Ingrese la descripcion de la tarea"></textarea>
 
-                            <label for="">Fecha Tarea:</label>
-                            <input type="date" id="fecha" name="fecha"> <br>
+                            <label for="" class="label">Fecha Tarea:</label>
+                            <input type="date" class="input" id="fecha" name="fecha"> <br>
                         </div>
 
                         <div class="colaboradores">
-                            <label for="">Añadir Colaboradores</label>
-                            <table style="width:100%" class="responstable">
+                            <label for="" class="label">Añadir Colaboradores</label>
+                            <table style="width:110%" class="responstable">
                                 <tr>
                                     <th>Seleccionar</th>
                                     <th>Cedula</th>
@@ -178,7 +183,7 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
 
                                     while ($row = $result->fetch_assoc()) {
                                         echo "<tr>";
-                                        echo "<td><input type='checkbox' /></td>";
+                                        echo "<td><input type='checkbox' id='check'/></td>";
                                         echo " <td>" . $row["usu_cedula"] . "</td>";
                                         echo " <td>" . $row["usu_nombres"] . "</td>";
                                         echo " <td>" . $row["usu_sucursal"] . "</td>";

@@ -12,10 +12,12 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pagina Mes</title>
+
+  <link rel="stylesheet" href="../../../css/form.scss">
   <link rel="stylesheet" href="../../../css/mes.css">
   <link rel="stylesheet" href="../../../css/general.css">
   <link rel="stylesheet" href="../../../css/tablas.css">
-  <link rel="stylesheet" href="../../../css/form.scss">
   </title>
   <link rel="stylesheet" href="../../../css/tablas.css" type="text/css">
   <script src="../js/calendario.js" type="text/javascript"></script>
@@ -47,7 +49,7 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
   </header>
 
   <section class="caledario">
-    <h1>hola este es el cuerpo donde va a estar el calendario</h1>
+    <h1>Calendario Mensual</h1>
 
     <div id="calendario">
       <div id="anterior" onclick="mesantes()"></div>
@@ -147,7 +149,7 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
   </section>
 
   <section class="tareas">
-    <h1>parte de la descipcion de las tareas</h1>
+    
     <div>
       <a href="#miModal"><img src="../../../images/iconos/mas.png" style="width: 2rem;" /> <span>Añadir tarea</span></a>
     </div>
@@ -192,7 +194,7 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
       <a href="#">X Cerrar</a>
 
       <h1>Ingreso de nueva tarea</h1>
-      <form id="formulario01" method="POST" action="php/crear_tarea.php">
+      <form id="formulario01" method="POST" action="../tareas/php/crear_tarea.php">
         <div class="seleccionHoras">
           <div class="horaInicial">
             <h2>Seleccione la hora Inicial</h2>

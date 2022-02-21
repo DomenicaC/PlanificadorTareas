@@ -22,14 +22,20 @@
 
 .uno {
   float: left;  
-  margin-left: 3rem;
+  margin-left: 10rem;
 }
 
 .dos {
-  
   margin-left: 10rem;
   float: left;
 }
+
+.tareas {
+  width: 41%;
+  height: auto;
+  margin-left: 480px;
+}
+
 
 /*.dos ul li a:visited {
   color: rgb(9, 13, 247);
