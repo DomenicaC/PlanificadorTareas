@@ -36,10 +36,21 @@ svg {
   margin-bottom: 80px;
   width: 700px;
   height: 1000px;
-  background: #fff;
+  background: rgb(123, 138, 219);
   border-radius: 5px;
   overflow: hidden;
   z-index: 1;
+}
+
+.form{
+  left: 32%;
+  width: 700px;
+  height: 800px;
+  padding: auto;
+}
+
+.seleccionHoras{
+  margin-left: 5%;
 }
 
 h2 {
@@ -226,3 +237,4 @@ h3 {
   width: 15%;
   font-size: small;
 }
+

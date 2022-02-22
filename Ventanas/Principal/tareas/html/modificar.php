@@ -6,7 +6,9 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="es">
+<meta name="language" content="es" />
+<meta http-equiv="Content-Type" content="text/html" charset="Iso-8859-15" />
 
 <head>
   <meta charset="UTF-8">
@@ -14,10 +16,11 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
 
   <!-- <link href="../../../css/princi.css" rel="stylesheet" /> -->
   <link href="../../../../css/general.css" rel="stylesheet" />
-
   <link rel="stylesheet" href="../../../../css/tablas.css">
   <link rel="stylesheet" href="../../../../css/mes.css">
-    <script src="../../js/calendario.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="../../../../css/form.scss">
+
+  <script src="../../js/calendario.js" type="text/javascript"></script>
 
 
 </head>
@@ -25,7 +28,7 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
 <body>
 
   <header class="enc1">
-    <img src="../../../../images/iconos/calendar.png" alt="iconoLogo" />
+    <img src="../../../../images/logo/logoOfi.png" alt="iconoLogo" />
     <br />
     <a class="cerrar" href="../../../../config/cerrarSesion.php">Cerrar Sesión</a>
 
@@ -60,35 +63,53 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
 
       while ($row = $result->fetch_assoc()) {
     ?>
-        <form id="formulario01" method="POST" action="../php/modificar.php">
+        <section class="container form">
 
-          <input type="hidden" id="codigo" name="codigo" value="<?php echo $codigo ?>" />
+          <form id="formulario01" method="POST" action="../php/modificar.php">
 
-          <label for="nombre">Nombre tarea (*)</label>
-          <input type="text" id="nombre" name="nombre" value="<?php echo $row["tar_nombre"]; ?>" required placeholder="Ingrese el nombre" />
-          <br>
+            <input class="input" type="hidden" id="codigo" name="codigo" value="<?php echo $codigo ?>" />
 
-          <label for="descripcion">Descripcion (*)</label>
-          <input type="text" id="descripcion" name="descripcion" value="<?php echo $row["tar_descripcion"]; ?>" required placeholder="Ingrese la descripcion" />
-          <br>
+            <label for="" class="label">Nombre Tarea:</label><Br />
+            <input class="input" type="text" id="nombre" name="nombre" value="<?php echo $row["tar_nombre"]; ?>" required placeholder="Ingrese el nombre" />
+            </br>
 
-          <label for="horaIni">Hora inicio (*)</label>
-          <input type="text" id="horaIni" name="horaIni" value="<?php echo $row["tar_horaInicio"]; ?>" required placeholder="Ingrese la hora de inicio" />
-          <br>
+            <label for="" class="label">Descripción Tarea:</label><Br />
+            <input id="descripcion" class="textarea" name="descripcion" rows="10" cols="10" value="<?php echo $row["tar_descripcion"]; ?>" placeholder="Ingrese la descripcion de la tarea"/>
+            <Br />
 
-          <label for="horaFin">Hora fin (*)</label>
-          <input type="text" id="horaFin" name="horaFin" value="<?php echo $row["tar_horaFin"]; ?>" required placeholder="Ingrese la fin" />
-          <br>
+            <label for="fecha" class="label">fecha (*)</label><Br />
+            <input class="input" type="text" id="fecha" name="fecha" value="<?php echo $row["tar_fecha"]; ?>" required placeholder="Ingrese la fecha" />
+            <br>
 
-          <label for="fecha">fecha (*)</label>
-          <input type="text" id="fecha" name="fecha" value="<?php echo $row["tar_fecha"]; ?>" required placeholder="Ingrese la fecha" />
-          <br>
+            <div class="seleccionHoras">
+              <div class="horaInicial">
+                <h2>Seleccione la hora Inicial</h2>
+                <section id="contReloj">
+                  <p id="pHoras"></p>
+                  <p>:</p>
+                  <p id="pMinutos"></p>
+                </section>
+                <!-- <section id="contSaludo"></section> -->
+                <input class="input" type="time" id="horaInicio" name="horaInicio" min="07:00" max="20:00" value="<?php echo $row["tar_horaInicio"]; ?>" onchange="ActualizarHora(this.value)" />
+              </div>
 
+              <div class="horaFinal">
+                <h2>Seleccione la hora Final</h2>
+                <section id="contReloj">
+                  <p id="pHorasF"></p>
+                  <p>:</p>
+                  <p id="pMinutosF"></p>
+                </section>
+                <!-- <section id="contSaludoF"></section> -->
+                <input type="time" class="input" id="horaFinal" name="horaFinal" min="07:00" max="20:00" value="<?php echo $row["tar_horaFin"]; ?>" onchange="ActualizarHoraFinal(this.value)" />
+              </div>
+            </div>
 
-          <input type="submit" id="modificar" name="modificar" value="Modificar" />
-          <input type="reset" id="cancelar" name="cancelar" value="Cancelar" />
+            <input type="submit" class="botonAceptar" id="modificar" name="modificar" value="Modificar" />
+            <a href="" class="botonCancelar" id=prin onclick="fechaActualPrin()"> Cancelar </a>
 
-        </form>
+          </form>
+        </section>
     <?php
       }
     } else {

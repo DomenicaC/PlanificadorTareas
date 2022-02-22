@@ -27,7 +27,7 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
 
 <body>
   <header class="enc1">
-    <img src="../../../images/logo/logo1.png" alt="iconoLogo" />
+    <img src="../../../images/logo/logoOfi.png" alt="iconoLogo" />
     <br />
     <a class="cerrar" href="../../../config/cerrarSesion.php">Cerrar Sesión</a>
     <h1>Planificador Empresarial</h1>
@@ -149,7 +149,7 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
   </section>
 
   <section class="tareas">
-    
+
     <div>
       <a href="#miModal"><img src="../../../images/iconos/mas.png" style="width: 2rem;" /> <span>Añadir tarea</span></a>
     </div>

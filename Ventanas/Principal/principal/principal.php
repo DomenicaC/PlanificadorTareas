@@ -67,7 +67,7 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
     </section>
 
     <section class="uno">
-        
+
         <h2>Control de tareas</h2>
         <table style="width:100%" class="responstable">
 
@@ -203,6 +203,7 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
                     </div>
 
                     <input type="submit" class="botonAceptar" id="crear" name="crear" value="Aceptar" />
+                    <a type="reset" onclick="fechaActualPrin()" href="" class="botonCancelar" id="cancelar" name="cancelar" value="Cancelar">Cancelar </a>
 
                 </form>
             </div>
