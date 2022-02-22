@@ -23,6 +23,7 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
     <script src="../js/calendario.js" type="text/javascript"></script>
     <script src="../js/reloj.js" type="text/javascript"></script>
     <script src="../js/controlEstadoTar.js" type="text/javascript"></script>
+    <script src="../js/eliminar.js" type="text/javascript"></script>
 
 </head>
 
@@ -241,7 +242,7 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
                     echo " <td>" . $row['tar_nombre'] . "</td>";
                     echo " <td>" . $row['tar_horaInicio'] . "</td>";
                     echo " <td>" . $row['tar_horaFin'] . "</td>";
-                    echo " <td> <a href='../tareas/php/eliminar.php?codigo=" . $row['tar_codigo'] . "'>Eliminar</a> </td>";
+                    echo " <td> <a  href='../tareas/php/eliminar.php?codigo=" . $row['tar_codigo'] . "'onclick='return confirmarEliminar()'>Eliminar</a> </td>";
                     echo " <td> <a onclick='fechaActualPrin()' href='../tareas/html/modificar.php?codigo=" . $row['tar_codigo'] . "'>Modificar</a> </td>";
                     echo "</tr>";
                 }
