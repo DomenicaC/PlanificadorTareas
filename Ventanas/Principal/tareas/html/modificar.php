@@ -21,7 +21,7 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
   <link rel="stylesheet" href="../../../../css/form.scss">
 
   <script src="../../js/calendario.js" type="text/javascript"></script>
-
+  <script src="../../js/reloj.js" type="text/javascript"></script>
 
 </head>
 
