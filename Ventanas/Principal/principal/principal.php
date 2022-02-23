@@ -25,6 +25,17 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
     <script src="../js/controlEstadoTar.js" type="text/javascript"></script>
     <script src="../js/eliminar.js" type="text/javascript"></script>
 
+    <style>
+        .ocultar {
+            display: none;
+        }
+
+        table>tr>td:nth-child(3),
+        table>tr>th:(3) {
+            display: none;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -94,9 +105,9 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
             $result2 = $conn->query($sql2);
             $tourresult2 = $result2->fetch_array()[0] ?? '';
 
-            echo ($tourresult);
-            echo ($tourresult1);
-            echo ($tourresult2);
+            //echo ($tourresult);
+            //echo ($tourresult1);
+            //echo ($tourresult2);
 
             //if ($result->num_rows > 0) {
             if ($tourresult > 0) {
@@ -219,8 +230,8 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
         <h2>Tareas del día</h2>
         <table style="width:100%" class="responstable">
             <tr>
+                <td></td>
                 <th>Realizado</th>
-                <th>Codigo</th>
                 <th>Nombre</th>
                 <th>Hora Inicio</th>
                 <th>Hora Fin</th>
@@ -234,11 +245,10 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
             if ($result->num_rows > 0) {
 
                 while ($row = $result->fetch_assoc()) {
-                    //echo "<tr>";
-
-                    echo "<td><input type='checkbox' onChange='seleccion(" . $row["tar_codigo"] . ")' id =  '" . $row["tar_codigo"] . "'"  ?> . <?php if ($row['tar_estado'] == 1) echo 'checked'; ?> . "onclick = 'estado()'/></td>";
+                    echo "<tr>";
+                    echo " <td style='visibility: hidden' id = 'cod'>" . $row["tar_codigo"] . "</td>";
+                    echo "<td><input type='checkbox' onChange='seleccion(" . $row["tar_codigo"] . ")' id =  '" . $row["tar_codigo"] . "'"  ?> . <?php if ($row['tar_estado'] == 1) echo 'checked'; ?> . onclick = 'estado()'/></td>
             <?php
-                    echo " <td id = 'cod'>" . $row["tar_codigo"] . "</td>";
                     echo " <td>" . $row['tar_nombre'] . "</td>";
                     echo " <td>" . $row['tar_horaInicio'] . "</td>";
                     echo " <td>" . $row['tar_horaFin'] . "</td>";

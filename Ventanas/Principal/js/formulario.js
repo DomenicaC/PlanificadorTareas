@@ -11,18 +11,18 @@ $(document).ready(() => {
         $(this)
             .siblings(".reg")
             .css({
-            transform: "translateY(40%) scale(5)",
-            "border-radius": "0",
-            width: "100%",
-            height: "100%"
-        })
+                transform: "translateY(40%) scale(5)",
+                "border-radius": "0",
+                width: "100%",
+                height: "100%"
+            })
             .end();
         reg_btn
             .siblings(".container h3:nth-of-type(1)")
             .css({
-            top: "40%",
-            "z-index": "8"
-        })
+                top: "40%",
+                "z-index": "8"
+            })
             .end()
             .end();
     });
@@ -31,18 +31,18 @@ $(document).ready(() => {
         $(this)
             .siblings(".sig")
             .css({
-            transform: "translateY(40%) scale(5)",
-            "border-radius": "0",
-            width: "100%",
-            height: "100%"
-        })
+                transform: "translateY(40%) scale(5)",
+                "border-radius": "0",
+                width: "100%",
+                height: "100%"
+            })
             .end();
         sig_btn
             .siblings(".container h3:nth-of-type(2)")
             .css({
-            top: "40%",
-            "z-index": "8"
-        })
+                top: "40%",
+                "z-index": "8"
+            })
             .end()
             .end();
     });

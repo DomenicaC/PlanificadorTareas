@@ -36,6 +36,15 @@
     $result = $conn->query($sqlIni);
     $result1 = $conn->query($sqlFin);
 
+    /* if ($horaInicio < $horaFinal) {
+        print '<script language="JavaScript">';
+        print 'alert("La hora final no puede ser mayor a la hora inicial");';
+        print "document.location='http://localhost/Planificador/Ventanas/Principal/principal/principal.php?fecha=" . $fechaActual . "#miModal'";
+        print '</script>';
+    } else {
+        
+    }*/
+
     if ($result->num_rows > 0) {
         print '<script language="JavaScript">';
         print 'alert("Esta tarea no puede ser añadida, tienes otra tarea en esas horas");';
@@ -66,30 +75,6 @@
             }
         }
     }
-
-    /*if ($conn->query($sql1) === TRUE) {
-        print '<script language="JavaScript">';
-        print 'alert("Esta tarea no puede ser añadida, tienes otra tarea en esas horas");';
-        print "document.location='http://localhost/Planificador/Ventanas/Principal/principal/principal.php?fecha=" . $fechaActual . "#miModal'";
-        print '</script>';
-    } else {
-        if ($conn->query($sql) === TRUE) {
-            //echo "<p>Se ha insertado la tarea correctamemte!!!</p>";
-            print '<script language="JavaScript">';
-            print 'alert("Los datos han sido agregados correctamente");';
-            print "document.location='http://localhost/Planificador/Ventanas/Principal/principal/principal.php?fecha=" . $fechaActual . "'";
-            print '</script>';
-        } else {
-
-            //echo "<p class='error'>Error: " . mysqli_error($conn) . "</p>";
-            print '<script language="JavaScript">';
-            print 'alert("Los datos no han podido ser agregados correctamente");';
-            print "document.location='http://localhost/Planificador/Ventanas/Principal/principal/principal.php?fecha=" . $fechaActual . "'";
-            print '</script>';
-        }
-    }
-*/
-
 
     //cerrar la base de datos
     $conn->close();

@@ -74,7 +74,7 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
             </br>
 
             <label for="" class="label">Descripción Tarea:</label><Br />
-            <input id="descripcion" class="textarea" name="descripcion" rows="10" cols="10" value="<?php echo $row["tar_descripcion"]; ?>" placeholder="Ingrese la descripcion de la tarea"/>
+            <input id="descripcion" class="textarea" name="descripcion" rows="10" cols="10" value="<?php echo $row["tar_descripcion"]; ?>" placeholder="Ingrese la descripcion de la tarea" />
             <Br />
 
             <label for="fecha" class="label">fecha (*)</label><Br />
