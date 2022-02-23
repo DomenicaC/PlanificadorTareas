@@ -27,17 +27,19 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
 
 </head>
 
+<header class="enc1">
+    <img src="../../../images/logo/logoOfi.png" alt="iconoLogo" />
+    <br />
+    <a class="cerrar" href="../../../config/cerrarSesion.php">Cerrar Sesión</a>
+    <h1>Planificador Empresarial</h1>
+
+
+    <br /> <br />
+</header>
+
 <body>
 
-    <header class="enc1">
-        <img src="../../../images/logo/logoOfi.png" alt="iconoLogo" />
-        <br />
-        <a class="cerrar" href="../../../config/cerrarSesion.php">Cerrar Sesión</a>
-        <h1>Planificador Empresarial</h1>
 
-
-        <br /> <br />
-    </header>
 
     <header class="tabla">
         <br /> <br />

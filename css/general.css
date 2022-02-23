@@ -41,12 +41,7 @@ a:active {
 
 
 /*encabezado*/
-.enc1 {
-    float: center;
-    text-align: center;
-    width: auto;
-    background-color: #1937a3;
-}
+
 
 .enc1 h1 {
     font-size: 50px;
@@ -151,7 +146,17 @@ body {
     box-shadow: rgba(58, 31, 61, 0.9) 20px 0px 25px,
         rgba(58, 31, 61, 0.9) -20px 0px 25px;
 }
+.enc1 {
+    float: center;
+    text-align: left;
+    width: 100% !important;
+    background-color: #1937a3;
 
+    margin-left: 0% !important;
+    margin-right: 0% !important;
+    margin-top: 0% !important;
+    margin-bottom: 0% !important;
+}
 
 #tablas {
     width: 100%;
@@ -196,7 +201,7 @@ body {
 
 .botonCancelar {
     background-color: #c71e1e;
-    
+
     /* Green */
     border: none;
     color: white;

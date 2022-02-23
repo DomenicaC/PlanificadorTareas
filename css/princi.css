@@ -21,7 +21,7 @@
 }
 
 .uno {
-  float: left;  
+  float: left;
   margin-left: 10rem;
 }
 
@@ -36,7 +36,23 @@
   margin-left: 480px;
 }
 
+.enc1 {
+  float: center;
+  text-align: left;
+  width: 100% !important;
+  background-color: #1937a3;
 
-/*.dos ul li a:visited {
+  margin-left: 0% !important;
+  margin-right: 0% !important;
+  margin-top: 0% !important;
+  margin-bottom: 0% !important;
+}
+
+/*.enc1{
+  width: 1920px !important
+}
+
+
+.dos ul li a:visited {
   color: rgb(9, 13, 247);
 }*/

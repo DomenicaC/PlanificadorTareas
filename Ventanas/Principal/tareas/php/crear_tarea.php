@@ -28,6 +28,16 @@
     $fechaActual = date("d.m.Y");
     $estado = 0;
 
+    $pHoras = isset($_POST["pHoras"]);
+    $pMinutos = isset($_POST["pMinutos"]);
+
+    $pHorasF = isset($_POST["pHorasF"]);
+    $pMinutosF = isset($_POST["pMinutosF"]);
+
+
+    $pHorasInt = intval($pHoras);
+    $pHorasFInt = intval($pHorasF);
+
     //INSERT INTO tarea VALUES (10, 'as', 'as', '16:00', '15:00',1, '1');
 
     $sqlIni = "SELECT * FROM tarea WHERE tar_horaInicio = '$horaInicio' AND tar_fecha = '$newDate' ";
@@ -36,13 +46,17 @@
     $result = $conn->query($sqlIni);
     $result1 = $conn->query($sqlFin);
 
-    /* if ($horaInicio < $horaFinal) {
+    /*if ($pHorasInt > $pHorasFInt) {
         print '<script language="JavaScript">';
         print 'alert("La hora final no puede ser mayor a la hora inicial");';
         print "document.location='http://localhost/Planificador/Ventanas/Principal/principal/principal.php?fecha=" . $fechaActual . "#miModal'";
         print '</script>';
     } else {
-        
+
+        print '<script language="JavaScript">';
+        print 'alert("La hora esta bien");';
+        print "document.location='http://localhost/Planificador/Ventanas/Principal/principal/principal.php?fecha=" . $fechaActual . "#miModal'";
+        print '</script>';
     }*/
 
     if ($result->num_rows > 0) {
