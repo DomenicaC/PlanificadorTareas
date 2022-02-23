@@ -25,17 +25,6 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
     <script src="../js/controlEstadoTar.js" type="text/javascript"></script>
     <script src="../js/eliminar.js" type="text/javascript"></script>
 
-    <style>
-        .ocultar {
-            display: none;
-        }
-
-        table>tr>td:nth-child(3),
-        table>tr>th:(3) {
-            display: none;
-        }
-    </style>
-
 </head>
 
 <body>

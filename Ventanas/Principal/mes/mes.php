@@ -156,7 +156,7 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
     </div>
     <table style="width:100%" class="responstable">
       <tr>
-        <th>Codigo</th>
+        <td></td>
         <th>Nombre</th>
         <th>Hora Inicio </th>
         <th>Hora Fin</th>
@@ -171,7 +171,7 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
 
         while ($row = $result->fetch_assoc()) {
           echo "<tr>";
-          echo " <td>" . $row["tar_codigo"] . "</td>";
+          echo " <td style='visibility: hidden' id = 'cod'>" . $row["tar_codigo"] . "</td>";
           echo " <td>" . $row['tar_nombre'] . "</td>";
           echo " <td>" . $row['tar_horaInicio'] . "</td>";
           echo " <td>" . $row['tar_horaFin'] . "</td>";
