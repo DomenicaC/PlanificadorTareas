@@ -29,23 +29,67 @@
     $estado = 0;
 
     //INSERT INTO tarea VALUES (10, 'as', 'as', '16:00', '15:00',1, '1');
-    $sql = "INSERT INTO tarea VALUES (0, '$nombre', '$descripcion', '$horaInicio', '$horaFinal', '$newDate', $estado, '$cedUsuario')";
-    echo ($sql);
 
-    if ($conn->query($sql) === TRUE) {
-        //echo "<p>Se ha insertado la tarea correctamemte!!!</p>";
+    $sqlIni = "SELECT * FROM tarea WHERE tar_horaInicio = '$horaInicio' AND tar_fecha = '$newDate' ";
+    $sqlFin = "SELECT * FROM tarea WHERE tar_horaFin = '$horaFinal' AND tar_fecha = '$newDate'";
+    //echo ($sql1);
+    $result = $conn->query($sqlIni);
+    $result1 = $conn->query($sqlFin);
+
+    if ($result->num_rows > 0) {
         print '<script language="JavaScript">';
-        print 'alert("Los datos han sido agregados correctamente");';
-        print "document.location='http://localhost/Planificador/Ventanas/Principal/principal/principal.php?fecha=" . $fechaActual . "'";
+        print 'alert("Esta tarea no puede ser añadida, tienes otra tarea en esas horas");';
+        print "document.location='http://localhost/Planificador/Ventanas/Principal/principal/principal.php?fecha=" . $fechaActual . "#miModal'";
         print '</script>';
     } else {
+        if ($result1->num_rows > 0) {
+            print '<script language="JavaScript">';
+            print 'alert("Esta tarea no puede ser añadida, tienes otra tarea en esas horas");';
+            print "document.location='http://localhost/Planificador/Ventanas/Principal/principal/principal.php?fecha=" . $fechaActual . "#miModal'";
+            print '</script>';
+        } else {
+            $sql = "INSERT INTO tarea VALUES (0, '$nombre', '$descripcion', '$horaInicio', '$horaFinal', '$newDate', $estado, '$cedUsuario')";
+            echo ($sql);
+            if ($conn->query($sql) === TRUE) {
+                //echo "<p>Se ha insertado la tarea correctamemte!!!</p>";
+                print '<script language="JavaScript">';
+                print 'alert("Los datos han sido agregados correctamente");';
+                print "document.location='http://localhost/Planificador/Ventanas/Principal/principal/principal.php?fecha=" . $fechaActual . "'";
+                print '</script>';
+            } else {
 
-        //echo "<p class='error'>Error: " . mysqli_error($conn) . "</p>";
-        print '<script language="JavaScript">';
-        print 'alert("Los datos no han podido ser agregados correctamente");';
-        print "document.location='http://localhost/Planificador/Ventanas/Principal/principal/principal.php?fecha=" . $fechaActual . "'";
-        print '</script>';
+                //echo "<p class='error'>Error: " . mysqli_error($conn) . "</p>";
+                print '<script language="JavaScript">';
+                print 'alert("Los datos no han podido ser agregados correctamente");';
+                print "document.location='http://localhost/Planificador/Ventanas/Principal/principal/principal.php?fecha=" . $fechaActual . "'";
+                print '</script>';
+            }
+        }
     }
+
+    /*if ($conn->query($sql1) === TRUE) {
+        print '<script language="JavaScript">';
+        print 'alert("Esta tarea no puede ser añadida, tienes otra tarea en esas horas");';
+        print "document.location='http://localhost/Planificador/Ventanas/Principal/principal/principal.php?fecha=" . $fechaActual . "#miModal'";
+        print '</script>';
+    } else {
+        if ($conn->query($sql) === TRUE) {
+            //echo "<p>Se ha insertado la tarea correctamemte!!!</p>";
+            print '<script language="JavaScript">';
+            print 'alert("Los datos han sido agregados correctamente");';
+            print "document.location='http://localhost/Planificador/Ventanas/Principal/principal/principal.php?fecha=" . $fechaActual . "'";
+            print '</script>';
+        } else {
+
+            //echo "<p class='error'>Error: " . mysqli_error($conn) . "</p>";
+            print '<script language="JavaScript">';
+            print 'alert("Los datos no han podido ser agregados correctamente");';
+            print "document.location='http://localhost/Planificador/Ventanas/Principal/principal/principal.php?fecha=" . $fechaActual . "'";
+            print '</script>';
+        }
+    }
+*/
+
 
     //cerrar la base de datos
     $conn->close();

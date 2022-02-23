@@ -15,10 +15,10 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
     <title>Pagina Principal</title>
 
     <link rel="stylesheet" href="../../../css/form.scss">
-    <link rel="stylesheet" href="../../../css/princi.css" />
     <link rel="stylesheet" href="../../../css/mes.css">
     <link rel="stylesheet" href="../../../css/tablas.css" type="text/css">
     <link rel="stylesheet" href="../../../css/general.css" />
+    <link rel="stylesheet" href="../../../css/princi.css" />
 
     <script src="../js/calendario.js" type="text/javascript"></script>
     <script src="../js/reloj.js" type="text/javascript"></script>
@@ -136,7 +136,7 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
                                 <p id="pMinutos"></p>
                             </section>
                             <!-- <section id="contSaludo"></section> -->
-                            <input class="input" type="time" id="horaInicio" name="horaInicio" min="07:00" max="20:00" onchange="ActualizarHora(this.value)">
+                            <input class="input" type="time" id="horaInicio" name="horaInicio" min="07:00" max="20:00" required onchange="ActualizarHora(this.value)">
                         </div>
 
                         <div class="horaFinal">
@@ -147,7 +147,7 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
                                 <p id="pMinutosF"></p>
                             </section>
                             <!-- <section id="contSaludoF"></section> -->
-                            <input type="time" class="input" id="horaFinal" name="horaFinal" min="07:00" max="20:00" onchange="ActualizarHoraFinal(this.value)">
+                            <input type="time" class="input" id="horaFinal" name="horaFinal" min="07:00" max="20:00" required onchange="ActualizarHoraFinal(this.value)">
                         </div>
                     </div>
 
@@ -161,7 +161,7 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
                             <textarea id="descripcion" class="textarea" name="descripcion" rows="10" cols="10" placeholder="Ingrese la descripcion de la tarea"></textarea>
 
                             <label for="" class="label">Fecha Tarea:</label>
-                            <input type="date" class="input" id="fecha" name="fecha"> <br>
+                            <input type="date" class="input" id="fecha" name="fecha" required> <br>
                         </div>
 
                         <div class="colaboradores">

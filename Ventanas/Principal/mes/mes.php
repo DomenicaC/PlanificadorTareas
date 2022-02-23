@@ -22,7 +22,8 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
   <link rel="stylesheet" href="../../../css/tablas.css" type="text/css">
   <script src="../js/calendario.js" type="text/javascript"></script>
   <script src="../js/reloj.js" type="text/javascript"></script>
-  <title>Agenda Mes</title>
+  <script src="../js/eliminar.js" type="text/javascript"></script>
+
 </head>
 
 <body>
@@ -174,7 +175,7 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
           echo " <td>" . $row['tar_nombre'] . "</td>";
           echo " <td>" . $row['tar_horaInicio'] . "</td>";
           echo " <td>" . $row['tar_horaFin'] . "</td>";
-          echo " <td> <a href='../tareas/php/eliminar.php?codigo=" . $row['tar_codigo'] . "'>Eliminar</a> </td>";
+          echo " <td> <a href='../tareas/php/eliminar.php?codigo=" . $row['tar_codigo'] . "'onclick='return confirmarEliminar()'>Eliminar</a> </td>";
           echo " <td> <a href='../tareas/html/modificar.php?codigo=" . $row['tar_codigo'] . "'>Modificar</a> </td>";
           echo "</tr>";
         }
@@ -204,7 +205,7 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
               <p id="pMinutos"></p>
             </section>
             <!-- <section id="contSaludo"></section> -->
-            <input class="input" type="time" id="horaInicio" name="horaInicio" min="07:00" max="20:00" onchange="ActualizarHora(this.value)">
+            <input class="input" type="time" id="horaInicio" name="horaInicio" min="07:00" max="20:00" required onchange="ActualizarHora(this.value)">
           </div>
 
           <div class="horaFinal">
@@ -215,7 +216,7 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
               <p id="pMinutosF"></p>
             </section>
             <!-- <section id="contSaludoF"></section> -->
-            <input type="time" class="input" id="horaFinal" name="horaFinal" min="07:00" max="20:00" onchange="ActualizarHoraFinal(this.value)">
+            <input type="time" class="input" id="horaFinal" name="horaFinal" min="07:00" max="20:00" required onchange="ActualizarHoraFinal(this.value)">
           </div>
         </div>
 
@@ -229,7 +230,7 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
             <textarea id="descripcion" class="textarea" name="descripcion" rows="10" cols="10" placeholder="Ingrese la descripcion de la tarea"></textarea>
 
             <label for="" class="label">Fecha Tarea:</label>
-            <input type="date" class="input" id="fecha" name="fecha"> <br>
+            <input type="date" class="input" id="fecha" name="fecha" required> <br>
           </div>
 
           <div class="colaboradores">
