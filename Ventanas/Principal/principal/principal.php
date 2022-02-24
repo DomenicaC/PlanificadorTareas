@@ -179,14 +179,14 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
                                 <?php
                                 include '../../../config/conexionBD.php';
                                 $fecha = $_GET["fecha"];
-                                $sql = "SELECT col_codigo, usu_cedula, usu_nombres, usu_sucursal, col_cargo  FROM usuario u, colaborador c WHERE u.usu_col_codigo = c.col_codigo ";
+                                $sql = "SELECT col_codigo, usu_cedula, usu_nombres, usu_sucursal, col_cargo, usu_correo  FROM usuario u, colaborador c WHERE u.usu_col_codigo = c.col_codigo ";
                                 $result = $conn->query($sql);
 
                                 if ($result->num_rows > 0) {
 
                                     while ($row = $result->fetch_assoc()) {
                                         echo "<tr>";
-                                        echo "<td><input type='checkbox' id='check'/></td>";
+                                        echo "<td><input name='colaboradores[]' type='checkbox' value='" . $row["usu_correo"] . "'/> </td>";
                                         echo " <td>" . $row["usu_cedula"] . "</td>";
                                         echo " <td>" . $row["usu_nombres"] . "</td>";
                                         echo " <td>" . $row["usu_sucursal"] . "</td>";

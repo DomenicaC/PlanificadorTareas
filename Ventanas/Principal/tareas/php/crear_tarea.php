@@ -59,6 +59,23 @@
         print '</script>';
     }*/
 
+    if (!empty($_POST['colaboradores'])) {
+        // Bucle para almacenar y mostrar los valores de la casilla de verificación comprobación individual.
+        foreach ($_POST['colaboradores'] as $selected) {
+
+            $para      = $selected;
+            $asunto    = $nombre;
+            $descripcion   = $descripcion;
+            $fechaTar = "La fecha de la reunion sera el día: " . $fecha . " \n \r\r\r\r La reunion inicia a las: " . $horaInicio . " \n \r\r\r\r  La reunion termina aproximandamente a las: " . $horaFinal;
+
+            $de = 'From: byrongodoy141998@gmail.com';
+
+            mail($para, $asunto, $descripcion . " \n  \r\r " . $fechaTar, $de);
+
+            echo $selected . "</br>";
+        }
+    }
+
     if ($result->num_rows > 0) {
         print '<script language="JavaScript">';
         print 'alert("Esta tarea no puede ser añadida, tienes otra tarea en esas horas");';
