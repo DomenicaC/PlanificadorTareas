@@ -57,15 +57,15 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
         <h1>Colaboradores</h1>
         <div class="colabs">
             <div class="at"> <a href=""><img src="../../../images/iconos/ac.png" style="width: 2rem;" />Atención Cliente</a> </div>
-            <div class="ja"> <a href=""><img src="../../../images/iconos/ja.png" style="width: 2rem;" />Jefe Agencia</a> </div>
-            <div class="jt"> <a href=""><img src="../../../images/iconos/jt.png" style="width: 2rem;" />Jefe Tecnico</a> </div>
-            <div class="jv"> <a href=""><img src="../../../images/iconos/jv.png" style="width: 2rem;" />Jefe Ventas</a> </div>
+            <div class="ja"> <a href=""><img src="../../../images/iconos/ja.png" style="width: 2rem;" />Área Agencia</a> </div>
+            <div class="jt"> <a href=""><img src="../../../images/iconos/jt.png" style="width: 2rem;" />Área Tecnico</a> </div>
+            <div class="jv"> <a href=""><img src="../../../images/iconos/jv.png" style="width: 2rem;" />Área Ventas</a> </div>
         </div>
     </section>
     </br>
-    <section class="tareas">
+    <section >
         <div>
-            <a href="#miModal"><img src="../../../images/iconos/mas.png" style="width: 2rem;" /> <span>Añadir tarea</span></a>
+            <a href="#miModal" class="agregar" style="float: center;"><img src="../../../images/iconos/mas.png" style="width: 2rem;" /> Añadir tarea</a>
         </div>
     </section>
 
@@ -133,9 +133,9 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
                         <div class="horaInicial">
                             <h2>Seleccione la hora Inicial</h2>
                             <section id="contReloj">
-                                <p id="pHoras"></p>
+                                <p id="pHoras" name="pHoras"></p>
                                 <p>:</p>
-                                <p id="pMinutos"></p>
+                                <p id="pMinutos" name="pMinutos"></p>
                             </section>
                             <!-- <section id="contSaludo"></section> -->
                             <input class="input" type="time" id="horaInicio" name="horaInicio" min="07:00" max="20:00" required onchange="ActualizarHora(this.value)">
@@ -144,12 +144,12 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
                         <div class="horaFinal">
                             <h2>Seleccione la hora Final</h2>
                             <section id="contReloj">
-                                <p id="pHorasF"></p>
+                                <p id="pHorasF" name="pHorasF"></p>
                                 <p>:</p>
-                                <p id="pMinutosF"></p>
+                                <p id="pMinutosF" name="pMinutosF"></p>
                             </section>
                             <!-- <section id="contSaludoF"></section> -->
-                            <input type="time" class="input" id="horaFinal" name="horaFinal" min="07:00" max="20:00" required onchange="ActualizarHoraFinal(this.value)">
+                            <input type="time" class="input" id="horaFinal" name="horaFinal" min="07:00" max="20:00" required onchange="ActualizarHoraFinal(this.value)" disabled>
                         </div>
                     </div>
 

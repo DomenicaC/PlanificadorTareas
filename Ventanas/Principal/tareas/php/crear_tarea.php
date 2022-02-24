@@ -76,6 +76,12 @@
         }
     }
 
+    /*  if ($horaInicio ==  $horaFinal) {
+        print '<script language="JavaScript">';
+        print 'alert("No se pueden poner las mismas horas");';
+        print "document.location='http://localhost/Planificador/Ventanas/Principal/principal/principal.php?fecha=" . $fechaActual . "#miModal'";
+        print '</script>';
+    } else {*/
     if ($result->num_rows > 0) {
         print '<script language="JavaScript">';
         print 'alert("Esta tarea no puede ser añadida, tienes otra tarea en esas horas");';
@@ -106,6 +112,7 @@
             }
         }
     }
+    //}
 
     //cerrar la base de datos
     $conn->close();

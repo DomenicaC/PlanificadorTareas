@@ -49,6 +49,9 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
     <br /> <br />
   </header>
 
+  <div>
+    <a href="#miModal" class="agregar" style="margin-left: 45%;"><img src="../../../images/iconos/mas.png" style="width: 2rem;" /> <span>Añadir tarea</span></a>
+  </div>
   <section class="caledario">
     <h1>Calendario Mensual</h1>
 
@@ -150,10 +153,7 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
   </section>
 
   <section class="tareas">
-
-    <div>
-      <a href="#miModal"><img src="../../../images/iconos/mas.png" style="width: 2rem;" /> <span>Añadir tarea</span></a>
-    </div>
+    <h1>Tareas del día</h1>
     <table style="width:100%" class="responstable">
       <tr>
         <td></td>
