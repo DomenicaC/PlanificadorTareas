@@ -66,7 +66,7 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
         <section class="container form">
 
           <form id="formulario01" method="POST" action="../php/modificar.php">
-
+          <Br />
             <input class="input" type="hidden" id="codigo" name="codigo" value="<?php echo $codigo ?>" />
 
             <label for="" class="label">Nombre Tarea:</label><Br />
@@ -77,16 +77,33 @@ if (!isset($_SESSION['isLogged']) || $_SESSION['isLogged'] === FALSE) {
             <input id="descripcion" class="textarea" name="descripcion" rows="10" cols="10" value="<?php echo $row["tar_descripcion"]; ?>" placeholder="Ingrese la descripcion de la tarea" />
             <Br />
 
-            <label for="fecha" class="label">Fecha:</label><Br />
+            <label for="fecha" class="label">Fecha: </label><Br />
             <input class="input" type="text" id="fecha" name="fecha" value="<?php echo $row["tar_fecha"]; ?>" required placeholder="Ingrese la fecha" />
             <br>
 
-            <label for="horaInicio" class="label">Hora Inicial:</label><Br />
-            <input class="input" type="time" id="horaInicio" name="horaInicio" value="<?php echo $row["tar_horaInicio"]; ?>" required placeholder="Ingrese la hora i" />
+            <div class="seleccionHoras">
+              <div class="horaInicial">
+                <label for="" class="label">Hora Inicial:</label><Br />
+                <section id="contReloj">
+                  <p id="pHoras"></p>
+                  <p>:</p>
+                  <p id="pMinutos"></p>
+                </section>
+                <!-- <section id="contSaludo"></section> -->
+                <input class="input" type="time" id="horaInicio" name="horaInicio" min="07:00" max="20:00" value="<?php echo $row["tar_horaInicio"]; ?>" onchange="ActualizarHora(this.value)" />
+              </div>
 
-            <label for="horaInicio" class="label">Hora Final:</label><Br />
-            <input type="time" class="input" id="horaFinal" name="horaFinal" value="<?php echo $row["tar_horaFin"]; ?>" required placeholder="Ingrese la hora f" />
-
+              <div class="horaFinal">
+                <label for="" class="label">Hora Final:</label><Br />
+                <section id="contReloj">
+                  <p id="pHorasF"></p>
+                  <p>:</p>
+                  <p id="pMinutosF"></p>
+                </section>
+                <!-- <section id="contSaludoF"></section> -->
+                <input type="time" class="input" id="horaFinal" name="horaFinal" min="07:00" max="20:00" value="<?php echo $row["tar_horaFin"]; ?>" onchange="ActualizarHoraFinal(this.value)" />
+              </div>
+            </div>
 
             <input type="submit" class="botonAceptar" id="modificar" name="modificar" value="Modificar" />
 

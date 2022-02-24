@@ -13,8 +13,8 @@
     $codigo = $_POST["codigo"];
     $nombre = isset($_POST["nombre"]) ? trim($_POST["nombre"], 'UTF-8') : null;
     $descripcion = isset($_POST["descripcion"]) ? trim($_POST["descripcion"], 'UTF-8') : null;
-    $horaIni = isset($_POST["horaIni"]) ? trim($_POST["horaIni"], 'UTF-8') : null;
-    $horaFin = isset($_POST["horaFin"]) ? trim($_POST["horaFin"]) : null;
+    $horaIni = isset($_POST["horaInicio"]) ? trim($_POST["horaInicio"], 'UTF-8') : null;
+    $horaFin = isset($_POST["horaFinal"]) ? trim($_POST["horaFinal"]) : null;
     $fecha = isset($_POST["fecha"]) ? trim($_POST["fecha"], 'UTF-8') : null;
     date_default_timezone_set("America/Guayaquil");
     //$fecha = date('d-m-Y H:i:s', time());
